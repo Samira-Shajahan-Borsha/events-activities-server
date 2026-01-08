@@ -4,6 +4,8 @@ import { User } from "../user/user.model";
 import httpStatus from "http-status-codes";
 import bcrypt from "bcryptjs";
 import { createTokens } from "../../utils/userTokens";
+import { generateToken, verifyToken } from "../../utils/jwt";
+import { envVars } from "../../config/env";
 
 const login = async (payload: Partial<IUser>) => {
     const { email, password: plainPassword } = payload;
@@ -32,6 +34,40 @@ const login = async (payload: Partial<IUser>) => {
     };
 };
 
+const getAccessToken = async (refreshToken: string) => {
+    const verifiedRefreshToken = verifyToken(refreshToken, envVars.JWT_REFRESH_TOKEN_SECRET);
+
+    const isUserExist = await User.findOne({ email: verifiedRefreshToken.email });
+
+    if (!isUserExist) {
+        throw new AppError(httpStatus.NOT_FOUND, "User does not exist");
+    }
+
+    if (isUserExist.isDeleted) {
+        throw new AppError(
+            httpStatus.BAD_REQUEST,
+            "User account is deleted. Please contact with support"
+        );
+    }
+
+    const jwtPayload = {
+        userId: isUserExist._id,
+        email: isUserExist.email,
+        role: isUserExist.role,
+    };
+
+    const accessToken = generateToken(
+        jwtPayload,
+        envVars.JWT_ACCESS_TOKEN_SECRET,
+        envVars.JWT_ACCESS_TOKEN_EXPIRES
+    );
+
+    return {
+        accessToken,
+    };
+};
+
 export const AuthService = {
     login,
+    getAccessToken,
 };
