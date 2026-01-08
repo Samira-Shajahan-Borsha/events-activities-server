@@ -7,7 +7,7 @@ import { envVars } from "../../config/env";
 import { Profile } from "../profile/profile.model";
 import mongoose from "mongoose";
 
-const register = async (payload: IUser) => {
+const register = async (payload: Partial<IUser>) => {
     const session = await mongoose.startSession();
 
     try {
