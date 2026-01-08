@@ -4,34 +4,64 @@ import { User } from "./user.model";
 import httpStatus from "http-status-codes";
 import bcrypt from "bcryptjs";
 import { envVars } from "../../config/env";
+import { Profile } from "../profile/profile.model";
+import mongoose from "mongoose";
 
 const register = async (payload: IUser) => {
-    const { email, password: plainPassword, role } = payload;
+    const session = await mongoose.startSession();
 
-    const isUserExist = await User.findOne({ email });
+    try {
+        session.startTransaction();
 
-    if (isUserExist) {
-        throw new AppError(httpStatus.BAD_REQUEST, "User with this email already exists");
+        const { email, password: plainPassword, role } = payload;
+
+        const isUserExist = await User.findOne({ email }).session(session);
+
+        if (isUserExist) {
+            throw new AppError(httpStatus.BAD_REQUEST, "User with this email already exists");
+        }
+
+        const hashedPassword = await bcrypt.hash(
+            plainPassword as string,
+            Number(envVars.BCRYPT_SALT_ROUND)
+        );
+
+        const authProvider: IAuthProvider = {
+            provider: "credentials",
+            providerId: email as string,
+        };
+
+        const createdUser = await User.create(
+            [
+                {
+                    email,
+                    password: hashedPassword,
+                    auths: [authProvider],
+                    role,
+                },
+            ],
+            { session }
+        );
+
+        await Profile.create(
+            [
+                {
+                    user: createdUser[0]._id,
+                },
+            ],
+            { session }
+        );
+
+        await session.commitTransaction();
+        session.endSession();
+
+        const { password, ...rest } = createdUser[0].toObject();
+        return rest;
+    } catch (error) {
+        await session.abortTransaction();
+        session.endSession();
+        throw error;
     }
-
-    const hashedPassword = await bcrypt.hash(
-        plainPassword as string,
-        Number(envVars.BCRYPT_SALT_ROUND)
-    );
-
-    const authProvider: IAuthProvider = {
-        provider: "credentials",
-        providerId: email as string,
-    };
-
-    const createdUser = await User.create({
-        email,
-        password: hashedPassword,
-        auths: [authProvider],
-        role,
-    });
-
-    return createdUser;
 };
 
 export const UserService = {

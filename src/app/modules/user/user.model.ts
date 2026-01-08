@@ -27,7 +27,7 @@ const userSchema = new Schema<IUser>(
                 values: Object.values(ROLE),
                 message: "{VALUE} is not supported as role",
             },
-            default: ROLE.PARTICIPANT,
+            default: ROLE.USER,
         },
         status: {
             type: String,
