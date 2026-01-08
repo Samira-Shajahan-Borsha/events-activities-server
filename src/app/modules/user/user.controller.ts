@@ -53,9 +53,51 @@ const getUserProfile = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const blockUser = catchAsync(async (req: Request, res: Response) => {
+    const userId = req.params.id;
+
+    const result = await UserService.blockUser(userId);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "User blocked successfully",
+        data: result,
+    });
+});
+
+const unblockUser = catchAsync(async (req: Request, res: Response) => {
+    const userId = req.params.id;
+
+    const result = await UserService.unblockUser(userId);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "User unblocked successfully",
+        data: result,
+    });
+});
+
+const approveHost = catchAsync(async (req: Request, res: Response) => {
+    const userId = req.params.id;
+
+    const result = await UserService.approveHost(userId);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Host account is approved successfully",
+        data: result,
+    });
+});
+
 export const UserController = {
     register,
     getAllUsers,
     getAllHosts,
-    getUserProfile
+    getUserProfile,
+    blockUser,
+    unblockUser,
+    approveHost
 };

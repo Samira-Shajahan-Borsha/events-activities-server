@@ -1,5 +1,5 @@
 import AppError from "../../errorHelpers/AppError";
-import { IAuthProvider, IUser, ROLE } from "./user.interface";
+import { IAuthProvider, IUser, ROLE, STATUS } from "./user.interface";
 import { User } from "./user.model";
 import httpStatus from "http-status-codes";
 import bcrypt from "bcryptjs";
@@ -41,6 +41,7 @@ const register = async (payload: Partial<IUser>) => {
                     password: hashedPassword,
                     auths: [authProvider],
                     role,
+                    status: role === ROLE.HOST ? STATUS.INACTIVE : STATUS.ACTIVE,
                 },
             ],
             { session }
@@ -133,9 +134,78 @@ const getUserProfile = async (userId: string) => {
     return user;
 };
 
+const blockUser = async (userId: string) => {
+    const existingUser = await User.findById(userId);
+
+    if (!existingUser) {
+        throw new AppError(httpStatus.NOT_FOUND, "User not found");
+    }
+
+    if (existingUser.status === STATUS.BLOCKED) {
+        throw new AppError(httpStatus.BAD_REQUEST, "User account is already blocked");
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+        existingUser._id,
+        {
+            status: STATUS.BLOCKED,
+        },
+        { new: true, runValidators: true }
+    ).select("-password");
+
+    return updatedUser;
+};
+
+const unblockUser = async (userId: string) => {
+    const existingUser = await User.findById(userId);
+
+    if (!existingUser) {
+        throw new AppError(httpStatus.NOT_FOUND, "User not found");
+    }
+
+    if (existingUser.status === STATUS.ACTIVE) {
+        throw new AppError(httpStatus.BAD_REQUEST, "User account is already active");
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+        existingUser._id,
+        {
+            status: STATUS.ACTIVE,
+        },
+        { new: true, runValidators: true }
+    ).select("-password");
+
+    return updatedUser;
+};
+
+const approveHost = async (userId: string) => {
+    const existingUser = await User.findById(userId);
+
+    if (!existingUser) {
+        throw new AppError(httpStatus.NOT_FOUND, "User not found");
+    }
+
+    if (existingUser.status === STATUS.ACTIVE) {
+        throw new AppError(httpStatus.BAD_REQUEST, "Host account is already active");
+    }
+
+    const updatedUser = await User.findByIdAndUpdate(
+        existingUser._id,
+        {
+            status: STATUS.ACTIVE,
+        },
+        { new: true, runValidators: true }
+    ).select("-password");
+
+    return updatedUser;
+};
+
 export const UserService = {
     register,
     getAllUsers,
     getAllHosts,
     getUserProfile,
+    blockUser,
+    unblockUser,
+    approveHost
 };

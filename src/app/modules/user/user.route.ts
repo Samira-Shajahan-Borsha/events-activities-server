@@ -12,8 +12,10 @@ router.post("/register", validateRequest(createUserZodSchema), UserController.re
 router.get("/all-users", checkAuth(ROLE.ADMIN), UserController.getAllUsers);
 router.get("/all-hosts", checkAuth(ROLE.ADMIN), UserController.getAllHosts);
 
-// router.patch("/block/:id", checkAuth(ROLE.ADMIN), UserController.blockUser);
-// router.patch("/unblock/:id", checkAuth(ROLE.ADMIN), UserController.unblockUser);
+router.patch("/block/:id", checkAuth(ROLE.ADMIN), UserController.blockUser);
+router.patch("/unblock/:id", checkAuth(ROLE.ADMIN), UserController.unblockUser);
+router.patch("/approve/:id", checkAuth(ROLE.ADMIN), UserController.approveHost);
+
 router.get("/:id", UserController.getUserProfile);
 
 
