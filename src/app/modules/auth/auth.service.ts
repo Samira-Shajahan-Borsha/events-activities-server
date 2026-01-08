@@ -6,6 +6,7 @@ import bcrypt from "bcryptjs";
 import { createTokens } from "../../utils/userTokens";
 import { generateToken, verifyToken } from "../../utils/jwt";
 import { envVars } from "../../config/env";
+import { Profile } from "../profile/profile.model";
 
 const login = async (payload: Partial<IUser>) => {
     const { email, password: plainPassword } = payload;
@@ -67,7 +68,19 @@ const getAccessToken = async (refreshToken: string) => {
     };
 };
 
+const getMe = async (userId: string) => {
+    // const user = await User.findById(userId).select("-password");
+    const user = await Profile.findOne({ user: userId }).populate("user", "email role status");
+
+    if (!user) {
+        throw new AppError(httpStatus.NOT_FOUND, "User doesn't exist");
+    }
+
+    return user;
+};
+
 export const AuthService = {
     login,
     getAccessToken,
+    getMe,
 };

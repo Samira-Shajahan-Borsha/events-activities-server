@@ -38,6 +38,18 @@ const getAccessToken = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const getMe = catchAsync(async (req: Request, res: Response) => {
+    const decodedToken = req.user;
+    const result = await AuthService.getMe(decodedToken.userId);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Profile info retrieved successfully",
+        data: result,
+    });
+});
+
 const logout = catchAsync(async (req: Request, res: Response) => {
     res.clearCookie("accessToken", {
         httpOnly: true,
@@ -62,5 +74,6 @@ const logout = catchAsync(async (req: Request, res: Response) => {
 export const AuthController = {
     login,
     getAccessToken,
+    getMe,
     logout,
 };
