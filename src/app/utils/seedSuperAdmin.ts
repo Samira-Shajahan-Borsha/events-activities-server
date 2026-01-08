@@ -30,6 +30,7 @@ export const seedSuperAdmin = async () => {
         };
 
         const payload: Partial<IUser> = {
+            fullName: "Super Admin",
             email: envVars.SUPER_ADMIN_EMAIL,
             password: hashedPassword,
             role: ROLE.ADMIN,
@@ -42,7 +43,6 @@ export const seedSuperAdmin = async () => {
             [
                 {
                     user: superAdmin[0]._id,
-                    fullName: "Super Admin",
                 },
             ],
             { session }

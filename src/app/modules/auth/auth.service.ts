@@ -31,7 +31,7 @@ const login = async (payload: Partial<IUser>) => {
     return {
         accessToken: tokens.accessToken,
         refreshToken: tokens.refreshToken,
-        data: { email },
+        data: { email, role: isUserExist.role },
     };
 };
 
@@ -69,14 +69,18 @@ const getAccessToken = async (refreshToken: string) => {
 };
 
 const getMe = async (userId: string) => {
-    // const user = await User.findById(userId).select("-password");
-    const user = await Profile.findOne({ user: userId }).populate("user", "email role status");
+    const isUserExist = await User.findById(userId);
 
-    if (!user) {
+    if (!isUserExist) {
         throw new AppError(httpStatus.NOT_FOUND, "User doesn't exist");
     }
 
-    return user;
+    const userProfile = await Profile.findOne({ user: isUserExist._id }).populate(
+        "user",
+        "email role status"
+    );
+
+    return userProfile;
 };
 
 export const AuthService = {

@@ -15,6 +15,7 @@ const authProviderSchema = new Schema<IAuthProvider>(
 
 const userSchema = new Schema<IUser>(
     {
+        fullName: { type: String, required: [true, "Name is required"], trim: true, minLength: 2 },
         email: { type: String, required: [true, "Email is required"], trim: true, unique: true },
         password: {
             type: String,
@@ -43,5 +44,15 @@ const userSchema = new Schema<IUser>(
     },
     { timestamps: true, versionKey: false }
 );
+
+userSchema.virtual("profile", {
+    ref: "Profile",
+    localField: "_id",
+    foreignField: "user",
+    justOne: true,
+});
+
+userSchema.set("toJSON", { virtuals: true });
+userSchema.set("toObject", { virtuals: true });
 
 export const User = model<IUser>("User", userSchema);

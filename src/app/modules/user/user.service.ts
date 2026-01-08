@@ -1,11 +1,13 @@
 import AppError from "../../errorHelpers/AppError";
-import { IAuthProvider, IUser } from "./user.interface";
+import { IAuthProvider, IUser, ROLE } from "./user.interface";
 import { User } from "./user.model";
 import httpStatus from "http-status-codes";
 import bcrypt from "bcryptjs";
 import { envVars } from "../../config/env";
 import { Profile } from "../profile/profile.model";
 import mongoose from "mongoose";
+import { QueryBuilder } from "../../utils/QueryBuilder";
+import { userSearchableFields } from "./user.constant";
 
 const register = async (payload: Partial<IUser>) => {
     const session = await mongoose.startSession();
@@ -13,7 +15,7 @@ const register = async (payload: Partial<IUser>) => {
     try {
         session.startTransaction();
 
-        const { email, password: plainPassword, role } = payload;
+        const { fullName, email, password: plainPassword, role } = payload;
 
         const isUserExist = await User.findOne({ email }).session(session);
 
@@ -34,6 +36,7 @@ const register = async (payload: Partial<IUser>) => {
         const createdUser = await User.create(
             [
                 {
+                    fullName,
                     email,
                     password: hashedPassword,
                     auths: [authProvider],
@@ -55,6 +58,7 @@ const register = async (payload: Partial<IUser>) => {
         await session.commitTransaction();
         session.endSession();
 
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
         const { password, ...rest } = createdUser[0].toObject();
         return rest;
     } catch (error) {
@@ -64,6 +68,74 @@ const register = async (payload: Partial<IUser>) => {
     }
 };
 
+const getAllUsers = async (query: Record<string, string>) => {
+    const queryBuilder = new QueryBuilder(
+        User.find({ role: ROLE.USER }).populate({
+            path: "profile",
+            select: "profilePhoto",
+        }),
+        query
+    );
+
+    const users = queryBuilder.search(userSearchableFields).filter().sort().fields().paginate();
+
+    const [data, meta] = await Promise.all([users.build(), queryBuilder.getMeta()]);
+
+    const userData = data?.map((user) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { password, auths, ...usersWithoutPassword } = user.toObject();
+        return usersWithoutPassword;
+    });
+
+    return {
+        data: userData,
+        meta: meta,
+    };
+};
+
+const getAllHosts = async (query: Record<string, string>) => {
+    const queryBuilder = new QueryBuilder(
+        User.find({ role: ROLE.HOST }).populate({
+            path: "profile",
+            select: "profilePhoto",
+        }),
+        query
+    );
+
+    const users = queryBuilder.search(userSearchableFields).filter().sort().fields().paginate();
+
+    const [data, meta] = await Promise.all([users.build(), queryBuilder.getMeta()]);
+
+    const userData = data?.map((user) => {
+        // eslint-disable-next-line @typescript-eslint/no-unused-vars
+        const { password, auths, ...usersWithoutPassword } = user.toObject();
+        return usersWithoutPassword;
+    });
+
+    return {
+        data: userData,
+        meta: meta,
+    };
+};
+
+const getUserProfile = async (userId: string) => {
+    const isUserExist = await User.findById(userId);
+
+    if (!isUserExist) {
+        throw new AppError(httpStatus.NOT_FOUND, "User doesn't exist");
+    }
+
+    const user = await Profile.findOne({ user: isUserExist._id }).populate(
+        "user",
+        "email role status"
+    );
+
+    return user;
+};
+
 export const UserService = {
     register,
+    getAllUsers,
+    getAllHosts,
+    getUserProfile,
 };

@@ -9,11 +9,6 @@ const profileSchema = new Schema<IProfile>(
             required: true,
             unique: true,
         },
-        fullName: {
-            type: String,
-            trim: true,
-            default: null,
-        },
         location: {
             type: String,
             default: "",
