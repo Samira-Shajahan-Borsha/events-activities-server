@@ -7,6 +7,7 @@ import { createTokens } from "../../utils/userTokens";
 import { generateToken, verifyToken } from "../../utils/jwt";
 import { envVars } from "../../config/env";
 import { Profile } from "../profile/profile.model";
+import { JwtPayload } from "jsonwebtoken";
 
 const login = async (payload: Partial<IUser>) => {
     const { email, password: plainPassword } = payload;
@@ -68,6 +69,30 @@ const getAccessToken = async (refreshToken: string) => {
     };
 };
 
+const changePassword = async (
+    oldPassword: string,
+    newPassword: string,
+    decodedToken: JwtPayload
+) => {
+    const user = await User.findById(decodedToken.userId);
+
+    if (!user) {
+        throw new AppError(httpStatus.NOT_FOUND, "User not found");
+    }
+
+    const isOldPasswordMatch = await bcrypt.compare(oldPassword, user?.password);
+
+    if (!isOldPasswordMatch) {
+        throw new AppError(httpStatus.BAD_REQUEST, "Old password is incorrect");
+    }
+
+    const hashedPassword = await bcrypt.hash(newPassword, Number(envVars.BCRYPT_SALT_ROUND));
+
+    user.password = hashedPassword;
+
+    user.save();
+};
+
 const getMe = async (userId: string) => {
     const isUserExist = await User.findById(userId);
 
@@ -86,5 +111,6 @@ const getMe = async (userId: string) => {
 export const AuthService = {
     login,
     getAccessToken,
+    changePassword,
     getMe,
 };
