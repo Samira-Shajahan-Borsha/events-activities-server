@@ -43,7 +43,36 @@ const updateEvent = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const getSingleEvent = catchAsync(async (req: Request, res: Response) => {
+    const slug = req.params.slug;
+    const result = await EventService.getSingleEvent(slug);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Event retrieved successfully",
+        data: result,
+    });
+});
+
+const deleteEvent = catchAsync(async (req: Request, res: Response) => {
+    const eventId = req.params.id;
+    const decodedToken = req.user;
+
+    const result = await EventService.deleteEvent(decodedToken, eventId);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Event deleted successfully",
+        data: result,
+    });
+});
+
+
 export const EventController = {
     createEvent,
     updateEvent,
+    getSingleEvent,
+    deleteEvent,
 };

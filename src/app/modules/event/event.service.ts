@@ -65,7 +65,46 @@ const updateEvent = async (id: string, payload: Partial<IEvent>, decodedToken: J
     return updatedTour;
 };
 
+const getSingleEvent = async (slug: string) => {
+    const event = await Event.findOne({ slug });
+
+    if (!event) {
+        throw new AppError(httpStatus.NOT_FOUND, "Event not found");
+    }
+
+    return event;
+};
+
+const deleteEvent = async (decodedToken: JwtPayload, eventId: string) => {
+    const event = await Event.findById(eventId);
+
+    if (!event) {
+        throw new AppError(httpStatus.NOT_FOUND, "Event not found");
+    }
+
+    if (
+        decodedToken.role === ROLE.HOST &&
+        event.host.toString() !== decodedToken.userId
+    ) {
+        throw new AppError(
+            httpStatus.FORBIDDEN,
+            "Hosts can only delete their own events"
+        );
+    }
+
+    await Event.findByIdAndDelete(eventId);
+
+    if (event.image) {
+        await deleteImageFromCloudinary(event.image);
+    }
+
+    return null;
+};
+
+
 export const EventService = {
     createEvent,
     updateEvent,
+    getSingleEvent,
+    deleteEvent,
 };
