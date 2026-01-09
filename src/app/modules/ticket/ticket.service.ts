@@ -5,12 +5,15 @@ import { getTransactionId } from "../../utils/getTransactionId";
 import { EVENT_STATUS, IS_PAID } from "../event/event.interface";
 import { Event } from "../event/event.model";
 import { PAYMENT_STATUS } from "../payment/payment.interface";
-import { Payment } from "../payment/payment.mode";
+import { Payment } from "../payment/payment.model";
 import { TICKET_STATUS } from "./ticket.interface";
 import { Ticket } from "./ticket.model";
 import { QueryBuilder } from "../../utils/QueryBuilder";
+import { JwtPayload } from "jsonwebtoken";
+import { ISSLCommerz } from "../sslCommerz/sslCommerz.interface";
+import { SSLService } from "../sslCommerz/sslCommerz.service";
 
-export const createTicket = async (eventId: string, userId: string) => {
+export const createTicket = async (eventId: string, user: JwtPayload) => {
     const session = await mongoose.startSession();
     session.startTransaction();
 
@@ -34,7 +37,7 @@ export const createTicket = async (eventId: string, userId: string) => {
         }
 
         const existingTicket = await Ticket.findOne({
-            user: userId,
+            user: user.userId,
             event: isExistEvent?._id,
             status: { $in: [TICKET_STATUS.PENDING, TICKET_STATUS.CONFIRMED] },
         }).session(session);
@@ -59,7 +62,7 @@ export const createTicket = async (eventId: string, userId: string) => {
             const ticket = await Ticket.create(
                 [
                     {
-                        user: userId,
+                        user: user.userId,
                         event: isExistEvent?._id,
                         status: TICKET_STATUS.CONFIRMED,
                     },
@@ -83,7 +86,7 @@ export const createTicket = async (eventId: string, userId: string) => {
         const ticket = await Ticket.create(
             [
                 {
-                    user: userId,
+                    user: user.userId,
                     event: isExistEvent?._id,
                     status: TICKET_STATUS.PENDING,
                 },
@@ -96,7 +99,7 @@ export const createTicket = async (eventId: string, userId: string) => {
             [
                 {
                     ticket: ticket[0]._id,
-                    user: userId,
+                    user: user.userId,
                     event: isExistEvent?._id,
                     transactionId,
                     amount: event.joiningFee,
@@ -110,13 +113,28 @@ export const createTicket = async (eventId: string, userId: string) => {
             ticket[0]._id,
             { payment: payment[0]._id },
             { new: true, runValidators: true, session }
-        );
+        )
+            .populate("user", "name email role")
+            .populate("event", "name type description isPaid status joiningFee")
+            .populate("payment");
 
+        /* Init Payment Gateway */
+        const sslPayload: ISSLCommerz = {
+            amount: event.joiningFee,
+            transactionId,
+            name: `Event - ${isExistEvent.name}`,
+            email: user.email,
+            phoneNumber: "01XXXXXXXXX",
+            address: "N/A",
+        };
+
+        const sslPayment = await SSLService.sslPaymentInit(sslPayload);
 
         await session.commitTransaction();
         session.endSession();
 
         return {
+            paymentUrl: sslPayment.GatewayPageURL, // frontend will hit this payment url
             ticket: updatedTicket,
         };
     } catch (error) {
@@ -156,7 +174,7 @@ const getMyTickets = async (query: Record<string, string>, userId: string) => {
             path: "event",
             select: "name type description date location joiningFee isPaid host status",
             populate: {
-                path: "host", 
+                path: "host",
                 select: "fullName email",
             },
         }),

@@ -8,7 +8,7 @@ const createTicket = catchAsync(async (req: Request, res: Response) => {
     const { eventId } = req.body;
     const decodedToken = req.user;
 
-    const result = await TicketService.createTicket(eventId, decodedToken.userId);
+    const result = await TicketService.createTicket(eventId, decodedToken);
 
     sendResponse(res, {
         statusCode: httpStatus.OK,
