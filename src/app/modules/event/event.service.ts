@@ -6,6 +6,8 @@ import { User } from "../user/user.model";
 import { ROLE, STATUS } from "../user/user.interface";
 import { deleteImageFromCloudinary } from "../../config/cloudinary.config";
 import { JwtPayload } from "jsonwebtoken";
+import { QueryBuilder } from "../../utils/QueryBuilder";
+import { eventSearchableFields } from "./event.constant";
 
 const createEvent = async (payload: Partial<IEvent>) => {
     const user = await User.findById(payload.host);
@@ -35,6 +37,24 @@ const createEvent = async (payload: Partial<IEvent>) => {
 
     const event = await Event.create(payload);
     return event;
+};
+
+const getAllEvents = async (query: Record<string, string>) => {
+    const queryBuilder = new QueryBuilder(Event.find(), query);
+
+    const tours = await queryBuilder
+        .search(eventSearchableFields)
+        .filter()
+        .sort()
+        .fields()
+        .paginate();
+
+    const [data, meta] = await Promise.all([tours.build(), queryBuilder.getMeta()]);
+
+    return {
+        data,
+        meta,
+    };
 };
 
 const updateEvent = async (id: string, payload: Partial<IEvent>, decodedToken: JwtPayload) => {
@@ -82,14 +102,8 @@ const deleteEvent = async (decodedToken: JwtPayload, eventId: string) => {
         throw new AppError(httpStatus.NOT_FOUND, "Event not found");
     }
 
-    if (
-        decodedToken.role === ROLE.HOST &&
-        event.host.toString() !== decodedToken.userId
-    ) {
-        throw new AppError(
-            httpStatus.FORBIDDEN,
-            "Hosts can only delete their own events"
-        );
+    if (decodedToken.role === ROLE.HOST && event.host.toString() !== decodedToken.userId) {
+        throw new AppError(httpStatus.FORBIDDEN, "Hosts can only delete their own events");
     }
 
     await Event.findByIdAndDelete(eventId);
@@ -101,9 +115,9 @@ const deleteEvent = async (decodedToken: JwtPayload, eventId: string) => {
     return null;
 };
 
-
 export const EventService = {
     createEvent,
+    getAllEvents,
     updateEvent,
     getSingleEvent,
     deleteEvent,
