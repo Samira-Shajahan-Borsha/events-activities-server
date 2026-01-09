@@ -16,5 +16,6 @@ router.post(
 
 router.patch("/leave-event/:ticketId", checkAuth(ROLE.USER), TicketController.leaveEvent);
 
+router.get("/my-tickets", checkAuth(ROLE.USER), TicketController.getMyTickets);
 
 export const TicketRoutes = router;

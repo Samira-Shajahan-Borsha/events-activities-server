@@ -8,6 +8,7 @@ import { PAYMENT_STATUS } from "../payment/payment.interface";
 import { Payment } from "../payment/payment.mode";
 import { TICKET_STATUS } from "./ticket.interface";
 import { Ticket } from "./ticket.model";
+import { QueryBuilder } from "../../utils/QueryBuilder";
 
 export const createTicket = async (eventId: string, userId: string) => {
     const session = await mongoose.startSession();
@@ -149,7 +150,30 @@ export const leaveEvent = async (ticketId: string, userId: string) => {
     return updatedTicket;
 };
 
+const getMyTickets = async (query: Record<string, string>, userId: string) => {
+    const queryBuilder = new QueryBuilder(
+        Ticket.find({ user: userId }).populate({
+            path: "event",
+            select: "name type description date location joiningFee isPaid host status",
+            populate: {
+                path: "host", 
+                select: "fullName email",
+            },
+        }),
+        query
+    );
+    const tours = await queryBuilder.search([]).filter().sort().fields().paginate();
+
+    const [data, meta] = await Promise.all([tours.build(), queryBuilder.getMeta()]);
+
+    return {
+        data,
+        meta,
+    };
+};
+
 export const TicketService = {
     createTicket,
     leaveEvent,
+    getMyTickets,
 };

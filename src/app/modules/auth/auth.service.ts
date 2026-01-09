@@ -29,10 +29,13 @@ const login = async (payload: Partial<IUser>) => {
 
     const tokens = createTokens(isUserExist);
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const { password, ...rest } = isUserExist.toObject();
+
     return {
         accessToken: tokens.accessToken,
         refreshToken: tokens.refreshToken,
-        data: { email, role: isUserExist.role },
+        user: rest,
     };
 };
 
