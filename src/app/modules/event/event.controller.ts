@@ -37,6 +37,24 @@ const getAllEvents = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const getMyEvents = catchAsync(async (req: Request, res: Response) => {
+    const query = req.query;
+    const decodedToken = req.user;
+    
+    const result = await EventService.getMyEvents(
+        query as Record<string, string>,
+        decodedToken.userId
+    );
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "My events retrieved successfully",
+        data: result.data,
+        meta: result.meta,
+    });
+});
+
 const updateEvent = catchAsync(async (req: Request, res: Response) => {
     const id = req.params.id;
     const decodedToken = req.user;
@@ -85,6 +103,7 @@ const deleteEvent = catchAsync(async (req: Request, res: Response) => {
 export const EventController = {
     createEvent,
     getAllEvents,
+    getMyEvents,
     updateEvent,
     getSingleEvent,
     deleteEvent,

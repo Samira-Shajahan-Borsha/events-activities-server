@@ -18,7 +18,7 @@ router.post(
 
 router.get("/all-events", EventController.getAllEvents);
 
-// router.get("/my-events", checkAuth(...Object.values(ROLE)), UserController.getMyEvents);
+router.get("/my-events", checkAuth(ROLE.ADMIN, ROLE.HOST), EventController.getMyEvents);
 
 router.get("/:slug", EventController.getSingleEvent);
 
@@ -31,8 +31,5 @@ router.patch(
 );
 
 router.delete("/:id", checkAuth(ROLE.ADMIN, ROLE.HOST), EventController.deleteEvent);
-
-/* 
-router.get("/my-events", checkAuth(...Object.values(ROLE)), UserController.getMyEvents); */
 
 export const EventRoutes = router;

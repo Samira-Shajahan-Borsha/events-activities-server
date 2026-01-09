@@ -57,6 +57,29 @@ const getAllEvents = async (query: Record<string, string>) => {
     };
 };
 
+const getMyEvents = async (query: Record<string, string>, userId: string) => {
+    const queryBuilder = new QueryBuilder(
+        Event.find({
+            host: userId,
+        }),
+        query
+    );
+
+    const tours = await queryBuilder
+        .search(eventSearchableFields)
+        .filter()
+        .sort()
+        .fields()
+        .paginate();
+
+    const [data, meta] = await Promise.all([tours.build(), queryBuilder.getMeta()]);
+
+    return {
+        data,
+        meta,
+    };
+};
+
 const updateEvent = async (id: string, payload: Partial<IEvent>, decodedToken: JwtPayload) => {
     const existingEvent = await Event.findById(id);
 
@@ -118,6 +141,7 @@ const deleteEvent = async (decodedToken: JwtPayload, eventId: string) => {
 export const EventService = {
     createEvent,
     getAllEvents,
+    getMyEvents,
     updateEvent,
     getSingleEvent,
     deleteEvent,

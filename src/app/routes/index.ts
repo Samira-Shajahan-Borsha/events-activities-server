@@ -3,6 +3,8 @@ import { UserRoutes } from "../modules/user/user.route";
 import { AuthRoutes } from "../modules/auth/auth.route";
 import { ProfileRoutes } from "../modules/profile/profile.route";
 import { EventRoutes } from "../modules/event/event.route";
+import { TicketRoutes } from "../modules/ticket/ticket.route";
+import { PaymentRoutes } from "../modules/payment/payment.route";
 
 const router = Router();
 
@@ -22,6 +24,14 @@ const moduleRoutes = [
     {
         path: "/event",
         route: EventRoutes,
+    },
+    {
+        path: "/ticket",
+        route: TicketRoutes,
+    },
+    {
+        path: "/payment",
+        route: PaymentRoutes,
     },
 ];
 

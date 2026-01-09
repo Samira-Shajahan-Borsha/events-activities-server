@@ -15,4 +15,6 @@ router.patch(
     ProfileController.updateProfile
 );
 
+router.get("/:id", ProfileController.getUserProfile);
+
 export const ProfileRoutes = router;
