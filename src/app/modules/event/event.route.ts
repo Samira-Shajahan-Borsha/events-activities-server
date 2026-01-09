@@ -32,7 +32,4 @@ router.patch(
 
 router.delete("/:id", checkAuth(ROLE.ADMIN, ROLE.HOST), EventController.deleteEvent);
 
-/* 
-router.get("/my-events", checkAuth(...Object.values(ROLE)), UserController.getMyEvents); */
-
 export const EventRoutes = router;
