@@ -1,0 +1,1 @@
+export const eventSearchableFields = ["name", "description", "type"];
