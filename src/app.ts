@@ -5,12 +5,20 @@ import httpStatusCode from "http-status-codes";
 import notFound from "./app/middlewares/notFound";
 import { globalErrorHandler } from "./app/middlewares/globalErrorHandler";
 import router from "./app/routes";
+import cors from "cors";
 
 const app = express();
 
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
+app.set("trust proxy", 1);
+app.use(
+    cors({
+        origin: envVars.FRONTEND_URL,
+        credentials: true,
+    })
+);
 
 app.use("/api/v1", router);
 

@@ -79,15 +79,15 @@ const unblockUser = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
-const approveHost = catchAsync(async (req: Request, res: Response) => {
+const updateRole = catchAsync(async (req: Request, res: Response) => {
     const userId = req.params.id;
 
-    const result = await UserService.approveHost(userId);
+    const result = await UserService.updateRole(userId);
 
     sendResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
-        message: "Host account is approved successfully",
+        message: "User role updated successfully",
         data: result,
     });
 });
@@ -99,5 +99,5 @@ export const UserController = {
     getUserProfile,
     blockUser,
     unblockUser,
-    approveHost
+    updateRole
 };

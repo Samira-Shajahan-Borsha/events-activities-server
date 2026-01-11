@@ -15,7 +15,7 @@ const register = async (payload: Partial<IUser>) => {
     try {
         session.startTransaction();
 
-        const { fullName, email, password: plainPassword, role } = payload;
+        const { fullName, email, password: plainPassword } = payload;
 
         const isUserExist = await User.findOne({ email }).session(session);
 
@@ -40,8 +40,6 @@ const register = async (payload: Partial<IUser>) => {
                     email,
                     password: hashedPassword,
                     auths: [authProvider],
-                    role,
-                    status: role === ROLE.HOST ? STATUS.INACTIVE : STATUS.ACTIVE,
                 },
             ],
             { session }
@@ -178,21 +176,24 @@ const unblockUser = async (userId: string) => {
     return updatedUser;
 };
 
-const approveHost = async (userId: string) => {
+const updateRole = async (userId: string) => {
     const existingUser = await User.findById(userId);
 
     if (!existingUser) {
         throw new AppError(httpStatus.NOT_FOUND, "User not found");
     }
 
-    if (existingUser.status === STATUS.ACTIVE) {
-        throw new AppError(httpStatus.BAD_REQUEST, "Host account is already active");
+    if (existingUser.role !== ROLE.USER) {
+        throw new AppError(
+            httpStatus.BAD_REQUEST,
+            "Only users with role USER can be upgraded to HOST"
+        );
     }
 
     const updatedUser = await User.findByIdAndUpdate(
         existingUser._id,
         {
-            status: STATUS.ACTIVE,
+            role: ROLE.HOST,
         },
         { new: true, runValidators: true }
     ).select("-password");
@@ -207,5 +208,5 @@ export const UserService = {
     getUserProfile,
     blockUser,
     unblockUser,
-    approveHost
+    updateRole,
 };
