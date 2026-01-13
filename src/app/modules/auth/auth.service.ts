@@ -105,7 +105,7 @@ const getMe = async (userId: string) => {
 
     const userProfile = await Profile.findOne({ user: isUserExist._id }).populate(
         "user",
-        "email role status"
+        "email role status fullName"
     );
 
     return userProfile;

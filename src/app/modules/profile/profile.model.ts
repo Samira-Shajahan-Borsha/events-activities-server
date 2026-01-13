@@ -15,7 +15,7 @@ const profileSchema = new Schema<IProfile>(
         },
         profilePhoto: {
             type: String,
-            default: "",
+            default: null,
         },
         bio: {
             type: String,

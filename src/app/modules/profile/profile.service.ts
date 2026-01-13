@@ -12,15 +12,19 @@ export const updateProfile = async (userId: string, payload: Partial<IProfile>) 
         throw new AppError(httpStatus.NOT_FOUND, "Profile not found");
     }
 
+    if (!payload.profilePhoto) {
+        payload.profilePhoto = existingProfile.profilePhoto;
+    } else {
+        // Delete old image from Cloudinary if new one is uploaded
+        if (existingProfile.profilePhoto) {
+            await deleteImageFromCloudinary(existingProfile.profilePhoto);
+        }
+    }
+
     const updatedProfile = await Profile.findOneAndUpdate({ user: userId }, payload, {
         new: true,
         runValidators: true,
     });
-
-    // Delete image from Cloudinary
-    if (payload.profilePhoto && existingProfile.profilePhoto) {
-        await deleteImageFromCloudinary(existingProfile.profilePhoto);
-    }
 
     return updatedProfile;
 };
@@ -34,7 +38,7 @@ const getUserProfile = async (userId: string) => {
 
     const userProfile = await Profile.findOne({ user: isUserExist._id }).populate(
         "user",
-        "email role status"
+        "email role status fullName"
     );
 
     return userProfile;
