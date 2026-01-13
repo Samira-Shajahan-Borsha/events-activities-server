@@ -71,7 +71,6 @@ const getAllUsers = async (query: Record<string, string>) => {
     const queryBuilder = new QueryBuilder(
         User.find({ role: ROLE.USER }).populate({
             path: "profile",
-            select: "profilePhoto",
         }),
         query
     );
@@ -95,8 +94,7 @@ const getAllUsers = async (query: Record<string, string>) => {
 const getAllHosts = async (query: Record<string, string>) => {
     const queryBuilder = new QueryBuilder(
         User.find({ role: ROLE.HOST }).populate({
-            path: "profile",
-            select: "profilePhoto",
+            path: "profile"
         }),
         query
     );

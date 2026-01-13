@@ -95,17 +95,22 @@ const updateEvent = async (id: string, payload: Partial<IEvent>, decodedToken: J
         delete payload.isFeatured;
     }
 
-    const updatedTour = await Event.findByIdAndUpdate(id, payload, {
+    if (payload.joiningFee === 0) {
+        payload.isPaid = IS_PAID.FREE;
+        payload.joiningFee = 0;
+    }
+
+    const updatedEvent = await Event.findByIdAndUpdate(id, payload, {
         new: true,
         runValidators: true,
     });
 
-    // Delete image from cloudinary
-    if (payload.image && existingEvent.image) {
+    // Delete image from cloudinary if changed
+    if (payload.image && existingEvent.image && payload.image !== existingEvent.image) {
         await deleteImageFromCloudinary(existingEvent.image);
     }
 
-    return updatedTour;
+    return updatedEvent;
 };
 
 const getSingleEvent = async (slug: string) => {
@@ -144,5 +149,6 @@ export const EventService = {
     getMyEvents,
     updateEvent,
     getSingleEvent,
+    // getEventById,
     deleteEvent,
 };

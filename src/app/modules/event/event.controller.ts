@@ -40,7 +40,7 @@ const getAllEvents = catchAsync(async (req: Request, res: Response) => {
 const getMyEvents = catchAsync(async (req: Request, res: Response) => {
     const query = req.query;
     const decodedToken = req.user;
-    
+
     const result = await EventService.getMyEvents(
         query as Record<string, string>,
         decodedToken.userId
