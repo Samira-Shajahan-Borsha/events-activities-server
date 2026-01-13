@@ -1,19 +1,5 @@
 import { z } from "zod";
-
-/* export const createEventZodSchema = z.object({
-    name: z.string().nonempty("Event name is required"),
-    type: z.string().nonempty("Event type is required"),
-    description: z.string().nonempty("Description is required"),
-    date: z.string().refine((val) => !isNaN(Date.parse(val)), {
-        message: "Invalid date format",
-    }),
-    location: z.string().nonempty("Location is required"),
-    minParticipants: z.number().min(1, "Minimum participants must be at least 1").optional(),
-    maxParticipants: z.number().min(1, "Maximum participants must be at least 1").optional(),
-    joiningFee: z.number().min(0, "Joining fee cannot be negative").optional().default(0),
-    isFeatured: z.boolean().optional().default(false)
-});
- */
+import { EVENT_STATUS } from "./event.interface";
 
 export const createEventZodSchema = z.object({
     name: z.string().nonempty(),
@@ -42,4 +28,5 @@ export const updateEventZodSchema = z.object({
     minParticipants: z.coerce.number().min(1).optional(),
     maxParticipants: z.coerce.number().min(1).optional(),
     isFeatured: z.boolean().optional(),
+    status: z.enum(Object.values(EVENT_STATUS)).optional(),
 });

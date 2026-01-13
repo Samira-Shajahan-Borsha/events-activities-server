@@ -1,6 +1,6 @@
 import AppError from "../../errorHelpers/AppError";
 import httpStatus from "http-status-codes";
-import { IEvent, IS_PAID } from "./event.interface";
+import { EVENT_STATUS, IEvent, IS_PAID } from "./event.interface";
 import { Event } from "./event.model";
 import { User } from "../user/user.model";
 import { ROLE, STATUS } from "../user/user.interface";
@@ -83,35 +83,37 @@ const getMyEvents = async (query: Record<string, string>, userId: string) => {
 const updateEvent = async (id: string, payload: Partial<IEvent>, decodedToken: JwtPayload) => {
     const existingEvent = await Event.findById(id);
 
-    if (!existingEvent) {
-        throw new Error("Event not found.");
-    }
+    if (!existingEvent) throw new Error("Event not found.");
 
     if (decodedToken.role === ROLE.HOST && existingEvent.host.toString() !== decodedToken.userId) {
         throw new Error("Hosts can only update their own events.");
     }
 
-    if (decodedToken.role === ROLE.HOST) {
-        delete payload.isFeatured;
-    }
+    if (decodedToken.role === ROLE.HOST) delete payload.isFeatured;
 
     if (payload.joiningFee === 0) {
         payload.isPaid = IS_PAID.FREE;
         payload.joiningFee = 0;
     }
 
-    const updatedEvent = await Event.findByIdAndUpdate(id, payload, {
-        new: true,
-        runValidators: true,
-    });
+    // Force status to be valid
+    if (payload.status) {
+        payload.status = String(payload.status).toUpperCase() as EVENT_STATUS;
+    }
 
-    // Delete image from cloudinary if changed
+    const updatedEvent = await Event.findByIdAndUpdate(
+        id,
+        { $set: payload },
+        { new: true, runValidators: true }
+    );
+
     if (payload.image && existingEvent.image && payload.image !== existingEvent.image) {
         await deleteImageFromCloudinary(existingEvent.image);
     }
 
     return updatedEvent;
 };
+
 
 const getSingleEvent = async (slug: string) => {
     const event = await Event.findOne({ slug });
