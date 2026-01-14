@@ -1,5 +1,10 @@
 import { deleteImageFromCloudinary } from "../../config/cloudinary.config";
 import AppError from "../../errorHelpers/AppError";
+import { EVENT_STATUS, IEvent } from "../event/event.interface";
+import { Event } from "../event/event.model";
+import { ITicket, TICKET_STATUS } from "../ticket/ticket.interface";
+import { Ticket } from "../ticket/ticket.model";
+import { ROLE } from "../user/user.interface";
 import { User } from "../user/user.model";
 import { IProfile } from "./profile.interface";
 import { Profile } from "./profile.model";
@@ -30,18 +35,51 @@ export const updateProfile = async (userId: string, payload: Partial<IProfile>) 
 };
 
 const getUserProfile = async (userId: string) => {
-    const isUserExist = await User.findById(userId);
+    const user = await User.findById(userId);
 
-    if (!isUserExist) {
+    if (!user) {
         throw new AppError(httpStatus.NOT_FOUND, "User doesn't exist");
     }
 
-    const userProfile = await Profile.findOne({ user: isUserExist._id }).populate(
+    const profile = await Profile.findOne({ user: user._id }).populate(
         "user",
-        "email role status fullName"
+        "fullName email role status"
     );
 
-    return userProfile;
+    if (!profile) {
+        throw new AppError(httpStatus.NOT_FOUND, "Profile not found");
+    }
+
+    let hostedEvents: IEvent[] = [];
+
+    if (user.role === ROLE.HOST || user.role === ROLE.ADMIN) {
+        hostedEvents = await Event.find({
+            host: user._id,
+            status: { $ne: EVENT_STATUS.CANCELLED },
+        })
+            .select("name slug type image date location isPaid joiningFee status isFeatured maxParticipants")
+            .sort({ date: -1 })
+            .limit(10);
+    }
+
+    const tickets = await Ticket.find({
+        user: user._id,
+        status: TICKET_STATUS.CONFIRMED,
+    })
+        .populate({
+            path: "event",
+            select: "name slug type image date location isPaid joiningFee status isFeatured host maxParticipants",
+        })
+        .sort({ createdAt: -1 })
+        .limit(10);
+
+    const joinedEvents = tickets.map((ticket: ITicket) => ticket.event).filter(Boolean);
+
+    return {
+        profile,
+        hostedEvents,
+        joinedEvents,
+    };
 };
 
 export const ProfileService = {
