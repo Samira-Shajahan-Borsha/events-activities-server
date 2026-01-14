@@ -8,6 +8,10 @@ import { deleteImageFromCloudinary } from "../../config/cloudinary.config";
 import { JwtPayload } from "jsonwebtoken";
 import { QueryBuilder } from "../../utils/QueryBuilder";
 import { eventSearchableFields } from "./event.constant";
+import { populate } from "dotenv";
+import { TICKET_STATUS } from "../ticket/ticket.interface";
+import { Ticket } from "../ticket/ticket.model";
+import { Types } from "mongoose";
 
 const createEvent = async (payload: Partial<IEvent>) => {
     const user = await User.findById(payload.host);
@@ -114,15 +118,42 @@ const updateEvent = async (id: string, payload: Partial<IEvent>, decodedToken: J
     return updatedEvent;
 };
 
-
 const getSingleEvent = async (slug: string) => {
-    const event = await Event.findOne({ slug });
+    const event = await Event.findOne({ slug })
+        .populate({
+            path: "host",
+            select: "fullName",
+            populate: {
+                path: "profile",
+                select: "profilePhoto",
+            },
+        })
+        .lean();
 
     if (!event) {
         throw new AppError(httpStatus.NOT_FOUND, "Event not found");
     }
 
-    return event;
+    const participants = await Ticket.find({
+        event: event._id,
+        status: TICKET_STATUS.CONFIRMED,
+    })
+        .populate({
+            path: "user",
+            select: "fullName",
+            populate: {
+                path: "profile",
+                select: "profilePhoto",
+            },
+        })
+        .select("user")
+        .lean();
+
+    return {
+        event,
+        participants,
+        participantsCount: participants.length,
+    };
 };
 
 const deleteEvent = async (decodedToken: JwtPayload, eventId: string) => {
@@ -151,6 +182,5 @@ export const EventService = {
     getMyEvents,
     updateEvent,
     getSingleEvent,
-    // getEventById,
     deleteEvent,
 };

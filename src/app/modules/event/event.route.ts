@@ -20,9 +20,7 @@ router.get("/all-events", EventController.getAllEvents);
 
 router.get("/my-events", checkAuth(ROLE.ADMIN, ROLE.HOST), EventController.getMyEvents);
 
-
 router.get("/:slug", EventController.getSingleEvent);
-
 
 router.patch(
     "/:id",

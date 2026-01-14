@@ -74,8 +74,9 @@ const updateEvent = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
-const getSingleEvent = catchAsync(async (req: Request, res: Response) => {
+const getSingleEvent = catchAsync(async (req, res) => {
     const slug = req.params.slug;
+
     const result = await EventService.getSingleEvent(slug);
 
     sendResponse(res, {

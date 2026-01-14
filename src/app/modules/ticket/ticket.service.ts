@@ -39,7 +39,7 @@ export const createTicket = async (eventId: string, user: JwtPayload) => {
         const existingTicket = await Ticket.findOne({
             user: user.userId,
             event: isExistEvent?._id,
-            status: { $in: [TICKET_STATUS.PENDING, TICKET_STATUS.CONFIRMED] },
+            status: { $in: [TICKET_STATUS.CONFIRMED] },
         }).session(session);
 
         if (existingTicket) {
