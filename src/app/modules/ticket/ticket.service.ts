@@ -190,8 +190,35 @@ const getMyTickets = async (query: Record<string, string>, userId: string) => {
     };
 };
 
+const getTicket = async (transactionId: string, userId: string) => {
+    const existingPayment = await Payment.findOne({ transactionId: transactionId });
+
+    if (!existingPayment) {
+        throw new AppError(httpStatus.NOT_FOUND, "Payment not found");
+    }
+
+    if (existingPayment.user.toString() !== userId) {
+        throw new AppError(httpStatus.UNAUTHORIZED, "You are not authorized to access this ticket");
+    }
+
+    const payment = await Payment.findOne({ transactionId })
+        .select("ticket user event transactionId amount status createdAt invoiceUrl")
+        .populate({
+            path: "event",
+            select: "name type description date location joiningFee isPaid status host",
+            populate: {
+                path: "host",
+                select: "fullName email",
+            },
+        })
+        .exec();
+
+    return payment;
+};
+
 export const TicketService = {
     createTicket,
     leaveEvent,
     getMyTickets,
+    getTicket,
 };

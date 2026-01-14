@@ -50,8 +50,24 @@ const getMyTickets = catchAsync(async (req: Request, res: Response) => {
     });
 });
 
+const getTicket = catchAsync(async (req: Request, res: Response) => {
+    const transactionId = req.params.transactionId;
+
+    const decodedToken = req.user;
+
+    const result = await TicketService.getTicket(transactionId, decodedToken.userId);
+
+    sendResponse(res, {
+        statusCode: httpStatus.OK,
+        success: true,
+        message: "Ticket info retrieved successfully",
+        data: result,
+    });
+});
+
 export const TicketController = {
     createTicket,
     leaveEvent,
     getMyTickets,
+    getTicket,
 };

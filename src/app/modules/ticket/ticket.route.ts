@@ -18,4 +18,6 @@ router.patch("/leave-event/:ticketId", checkAuth(ROLE.USER), TicketController.le
 
 router.get("/my-tickets", checkAuth(ROLE.USER), TicketController.getMyTickets);
 
+router.get("/:transactionId", checkAuth(ROLE.USER), TicketController.getTicket);
+
 export const TicketRoutes = router;
