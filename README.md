@@ -23,7 +23,7 @@ The backend is designed as a **role-driven system** that ensures data integrity,
     https://events-activities-server-seven.vercel.app/api/v1
 
 -   **Frontend Live:**  
-    https://eventhub-frontend.vercel.app/
+    https://events-activities-client-five.vercel.app/
 
 -   **Frontend Repository:**  
     https://github.com/Samira-Shajahan-Borsha/events-activities-client
