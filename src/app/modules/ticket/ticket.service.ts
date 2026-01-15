@@ -170,14 +170,7 @@ export const leaveEvent = async (ticketId: string, userId: string) => {
 
 const getMyTickets = async (query: Record<string, string>, userId: string) => {
     const queryBuilder = new QueryBuilder(
-        Ticket.find({ user: userId }).populate({
-            path: "event",
-            select: "name type description date location joiningFee isPaid host status",
-            populate: {
-                path: "host",
-                select: "fullName email",
-            },
-        }),
+        Ticket.find({ user: userId, status: TICKET_STATUS.CONFIRMED }).populate("event", "name image isPaid location type date joiningFee"),
         query
     );
     const tours = await queryBuilder.search([]).filter().sort().fields().paginate();

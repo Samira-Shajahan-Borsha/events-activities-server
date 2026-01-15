@@ -8,10 +8,8 @@ import { deleteImageFromCloudinary } from "../../config/cloudinary.config";
 import { JwtPayload } from "jsonwebtoken";
 import { QueryBuilder } from "../../utils/QueryBuilder";
 import { eventSearchableFields } from "./event.constant";
-import { populate } from "dotenv";
 import { TICKET_STATUS } from "../ticket/ticket.interface";
 import { Ticket } from "../ticket/ticket.model";
-import { Types } from "mongoose";
 
 const createEvent = async (payload: Partial<IEvent>) => {
     const user = await User.findById(payload.host);
