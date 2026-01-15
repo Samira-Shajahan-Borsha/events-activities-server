@@ -1,0 +1,2740 @@
+{
+	"info": {
+		"_postman_id": "729d9bf8-a272-4586-8e6a-944b42b08673",
+		"name": "Events Activities",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31730860"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    /* \"fullName\": \"Muhtasim Azad\",\r\n    \"email\": \"muhtasim.azad@gmail.com\",\r\n    \"password\": \"1234@Muhtasim\" */\r\n    \"fullName\": \"Rafsan Qadir\",\r\n    \"email\": \"rafsan.qadir@gmail.com\",\r\n    \"role\": \"HOST\",\r\n    \"password\": \"1234@Rafsan\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/register",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    /* \"fullName\": \"Fahim\",\r\n    \"email\": \"fahim@gmail.com\",\r\n    \"role\": \"HOST\",\r\n    \"password\": \"1234@Fahim\" */\r\n    \"fullName\": \"Ayon\",\r\n    \"email\": \"ayon@gmail.com\",\r\n    \"password\": \"1234@Ayon\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/register",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"register"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "370"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"172-YNmrBlCAeaV5iWuK1wxtf7WmsPE\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Jan 2026 06:26:53 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 201,\n    \"success\": true,\n    \"message\": \"User created successfully\",\n    \"data\": {\n        \"fullName\": \"Ayon\",\n        \"email\": \"ayon@gmail.com\",\n        \"role\": \"USER\",\n        \"status\": \"ACTIVE\",\n        \"isVerified\": false,\n        \"isDeleted\": false,\n        \"auths\": [\n            {\n                \"provider\": \"credentials\",\n                \"providerId\": \"ayon@gmail.com\"\n            }\n        ],\n        \"_id\": \"695f4e2d2f98954db22453ae\",\n        \"createdAt\": \"2026-01-08T06:26:53.300Z\",\n        \"updatedAt\": \"2026-01-08T06:26:53.300Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Users",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/all-users?sort=-fullName&searchTerm=ta",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"all-users"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "-fullName"
+								},
+								{
+									"key": "searchTerm",
+									"value": "ta"
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "fields",
+									"value": "fullName,email",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/all-users?sort=-fullName&searchTerm=ta&page=1&limit=2&fields=fullName,email",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"all-users"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "-fullName"
+										},
+										{
+											"key": "searchTerm",
+											"value": "ta"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										},
+										{
+											"key": "fields",
+											"value": "fullName,email"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "314"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"13a-FiECijCDvj1yTiZYrcoftow1lPI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Jan 2026 06:43:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"All users retrieved successfully\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 2,\n        \"total\": 3,\n        \"totalPage\": 2\n    },\n    \"data\": [\n        {\n            \"_id\": \"695f50bccd89e5e7c09210bb\",\n            \"fullName\": \"Tanvir Hasan\",\n            \"email\": \"tanvir@gmail.com\"\n        },\n        {\n            \"_id\": \"695f5091cd89e5e7c0921083\",\n            \"fullName\": \"Tahmid Khan\",\n            \"email\": \"tahmid@gmail.com\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Hosts",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/all-hosts?status=ACTIVE",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"all-hosts"
+							],
+							"query": [
+								{
+									"key": "sort",
+									"value": "-fullName",
+									"disabled": true
+								},
+								{
+									"key": "searchTerm",
+									"value": "ta",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "fields",
+									"value": "fullName,email",
+									"disabled": true
+								},
+								{
+									"key": "status",
+									"value": "ACTIVE"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/all-users?sort=-fullName&searchTerm=ta&page=1&limit=2&fields=fullName,email",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"all-users"
+									],
+									"query": [
+										{
+											"key": "sort",
+											"value": "-fullName"
+										},
+										{
+											"key": "searchTerm",
+											"value": "ta"
+										},
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "2"
+										},
+										{
+											"key": "fields",
+											"value": "fullName,email"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "314"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"13a-FiECijCDvj1yTiZYrcoftow1lPI\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Jan 2026 06:43:30 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"All users retrieved successfully\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 2,\n        \"total\": 3,\n        \"totalPage\": 2\n    },\n    \"data\": [\n        {\n            \"_id\": \"695f50bccd89e5e7c09210bb\",\n            \"fullName\": \"Tanvir Hasan\",\n            \"email\": \"tanvir@gmail.com\"\n        },\n        {\n            \"_id\": \"695f5091cd89e5e7c0921083\",\n            \"fullName\": \"Tahmid Khan\",\n            \"email\": \"tahmid@gmail.com\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User Profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/695f4e0e2f98954db22453a9",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"695f4e0e2f98954db22453a9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get User Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/695f4e0e2f98954db22453a9",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"695f4e0e2f98954db22453a9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "394"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"18a-X4puuklKePaM7Cw1rYwVMiJDsTM\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Jan 2026 14:17:20 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"User profile info retrieved successfully\",\n    \"data\": {\n        \"_id\": \"695f4e0e2f98954db22453ab\",\n        \"user\": {\n            \"_id\": \"695f4e0e2f98954db22453a9\",\n            \"email\": \"fahim@gmail.com\",\n            \"role\": \"HOST\",\n            \"status\": \"ACTIVE\",\n            \"id\": \"695f4e0e2f98954db22453a9\"\n        },\n        \"location\": \"\",\n        \"profilePhoto\": \"\",\n        \"bio\": \"\",\n        \"interests\": [],\n        \"createdAt\": \"2026-01-08T06:26:22.127Z\",\n        \"updatedAt\": \"2026-01-08T06:26:22.127Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Role",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/role/695f4e0e2f98954db22453a9",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"role",
+								"695f4e0e2f98954db22453a9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Role",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/role/695f5085cd89e5e7c0921074",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"role",
+										"695f5085cd89e5e7c0921074"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "413"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"19d-WQGFHRR6Q8wz7vBg0CRRmMcgreU\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 13 Jan 2026 20:39:16 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"User role updated successfully\",\n    \"data\": {\n        \"_id\": \"695f5085cd89e5e7c0921074\",\n        \"fullName\": \"Rafi Hasan\",\n        \"email\": \"rafi@gmail.com\",\n        \"role\": \"HOST\",\n        \"status\": \"ACTIVE\",\n        \"isVerified\": false,\n        \"isDeleted\": false,\n        \"auths\": [\n            {\n                \"provider\": \"credentials\",\n                \"providerId\": \"rafi@gmail.com\"\n            }\n        ],\n        \"createdAt\": \"2026-01-08T06:36:53.378Z\",\n        \"updatedAt\": \"2026-01-13T20:39:15.968Z\",\n        \"id\": \"695f5085cd89e5e7c0921074\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Block User",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/user/block/695f4e0e2f98954db22453a9",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"block",
+								"695f4e0e2f98954db22453a9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Block User",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/user/block/695f4e2d2f98954db22453ae",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"block",
+										"695f4e2d2f98954db22453ae"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "403"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"193-EGBlVi1eHfjXeJf6lZlCo1z4Vv4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Jan 2026 14:51:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"User blocked successfully\",\n    \"data\": {\n        \"_id\": \"695f4e2d2f98954db22453ae\",\n        \"fullName\": \"Ayon\",\n        \"email\": \"ayon@gmail.com\",\n        \"role\": \"USER\",\n        \"status\": \"BLOCKED\",\n        \"isVerified\": false,\n        \"isDeleted\": false,\n        \"auths\": [\n            {\n                \"provider\": \"credentials\",\n                \"providerId\": \"ayon@gmail.com\"\n            }\n        ],\n        \"createdAt\": \"2026-01-08T06:26:53.300Z\",\n        \"updatedAt\": \"2026-01-08T14:51:48.371Z\",\n        \"id\": \"695f4e2d2f98954db22453ae\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Unblock User",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/user/unblock/695f4e0e2f98954db22453a9",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"user",
+								"unblock",
+								"695f4e0e2f98954db22453a9"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Unblock User",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/user/unblock/695f4e2d2f98954db22453ae",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"user",
+										"unblock",
+										"695f4e2d2f98954db22453ae"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "404"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"194-r9R+ZJYHxtSEl5dhDXUQS7dEzCw\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Jan 2026 14:52:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"User unblocked successfully\",\n    \"data\": {\n        \"_id\": \"695f4e2d2f98954db22453ae\",\n        \"fullName\": \"Ayon\",\n        \"email\": \"ayon@gmail.com\",\n        \"role\": \"USER\",\n        \"status\": \"ACTIVE\",\n        \"isVerified\": false,\n        \"isDeleted\": false,\n        \"auths\": [\n            {\n                \"provider\": \"credentials\",\n                \"providerId\": \"ayon@gmail.com\"\n            }\n        ],\n        \"createdAt\": \"2026-01-08T06:26:53.300Z\",\n        \"updatedAt\": \"2026-01-08T14:52:50.044Z\",\n        \"id\": \"695f4e2d2f98954db22453ae\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    /* \"email\": \"admin@gmail.com\",\r\n    \"password\": \"12345678@admin\" */\r\n    \"email\": \"fahim@gmail.com\",\r\n    \"password\": \"1234@Fahim\"\r\n    /* \"email\": \"ayon@gmail.com\",\r\n    \"password\": \"1234@Ayon\" */\r\n    /* \"email\": \"rafi@gmail.com\",\r\n    \"password\": \"1234@Rafi\" */\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/login",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    /* \"email\": \"admin@gmail.com\",\r\n    \"password\": \"12345678@admin\" */\r\n    \"email\": \"fahim@gmail.com\",\r\n    \"password\": \"1234@Fahim\"\r\n    /* \"email\": \"ayon@gmail.com\",\r\n    \"password\": \"1234@Ayon\" */\r\n    /* \"email\": \"rafi@gmail.com\",\r\n    \"password\": \"1234@Rafi\" */\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/auth/login",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTVmNGUwZTJmOTg5NTRkYjIyNDUzYTkiLCJlbWFpbCI6ImZhaGltQGdtYWlsLmNvbSIsInJvbGUiOiJIT1NUIiwiaWF0IjoxNzY3OTc2OTI1LCJleHAiOjE3NjgwNjMzMjV9.GUiuAQEooyLmm5GPWFi86qrJftZjILHxPWjpGMj2l8w; Path=/; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "refreshToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTVmNGUwZTJmOTg5NTRkYjIyNDUzYTkiLCJlbWFpbCI6ImZhaGltQGdtYWlsLmNvbSIsInJvbGUiOiJIT1NUIiwiaWF0IjoxNzY3OTc2OTI1LCJleHAiOjE3NzA1Njg5MjV9.d7fcfxx3Fdte4VVZS67rUYBYfsHoKE5ftJHi3f4i4hw; Path=/; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "909"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"38d-/z01RRzTcK+xJAmienLsSIvW620\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jan 2026 16:42:05 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"User logged in successfully\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTVmNGUwZTJmOTg5NTRkYjIyNDUzYTkiLCJlbWFpbCI6ImZhaGltQGdtYWlsLmNvbSIsInJvbGUiOiJIT1NUIiwiaWF0IjoxNzY3OTc2OTI1LCJleHAiOjE3NjgwNjMzMjV9.GUiuAQEooyLmm5GPWFi86qrJftZjILHxPWjpGMj2l8w\",\n        \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTVmNGUwZTJmOTg5NTRkYjIyNDUzYTkiLCJlbWFpbCI6ImZhaGltQGdtYWlsLmNvbSIsInJvbGUiOiJIT1NUIiwiaWF0IjoxNzY3OTc2OTI1LCJleHAiOjE3NzA1Njg5MjV9.d7fcfxx3Fdte4VVZS67rUYBYfsHoKE5ftJHi3f4i4hw\",\n        \"user\": {\n            \"_id\": \"695f4e0e2f98954db22453a9\",\n            \"fullName\": \"Fahim\",\n            \"email\": \"fahim@gmail.com\",\n            \"role\": \"HOST\",\n            \"status\": \"ACTIVE\",\n            \"isVerified\": false,\n            \"isDeleted\": false,\n            \"auths\": [\n                {\n                    \"provider\": \"credentials\",\n                    \"providerId\": \"fahim@gmail.com\"\n                }\n            ],\n            \"createdAt\": \"2026-01-08T06:26:22.082Z\",\n            \"updatedAt\": \"2026-01-08T15:18:38.628Z\",\n            \"id\": \"695f4e0e2f98954db22453a9\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "New Access Token / Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   /*  \"email\": \"admin@gmail.com\",\r\n    \"password\": \"12345678@admin\" */\r\n    \"email\": \"fahim@gmail.com\",\r\n    \"password\": \"1234@Fahim\"\r\n    /* \r\n    \"email\": \"ayon@gmail.com\",\r\n    \"password\": \"1234@Ayon\" */\r\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/refresh-token",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"refresh-token"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "New Access Token / Refresh Token",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   /*  \"email\": \"admin@gmail.com\",\r\n    \"password\": \"12345678@admin\" */\r\n    \"email\": \"fahim@gmail.com\",\r\n    \"password\": \"1234@Fahim\"\r\n    /* \r\n    \"email\": \"ayon@gmail.com\",\r\n    \"password\": \"1234@Ayon\" */\r\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/auth/refresh-token",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "accessToken=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTVmMTllMDk0MjY2YTdjN2YzM2M5NGEiLCJlbWFpbCI6ImZhaGltQGdtYWlsLmNvbSIsInJvbGUiOiJIT1NUIiwiaWF0IjoxNzY3ODQ5NDYwLCJleHAiOjE3Njc5MzU4NjB9.NTwrHqd4qtiSBybLG9HTMOo6vCaiSzC0QjKr_xdDCvk; Path=/; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "340"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"154-MLr3NqjoWfK2CaJJAUlnnpViFN4\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Jan 2026 05:17:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"New Access token generated successfully\",\n    \"data\": {\n        \"accessToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTVmMTllMDk0MjY2YTdjN2YzM2M5NGEiLCJlbWFpbCI6ImZhaGltQGdtYWlsLmNvbSIsInJvbGUiOiJIT1NUIiwiaWF0IjoxNzY3ODQ5NDYwLCJleHAiOjE3Njc5MzU4NjB9.NTwrHqd4qtiSBybLG9HTMOo6vCaiSzC0QjKr_xdDCvk\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get My Profile info",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/me",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get My Profile info",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   /*  \"email\": \"admin@gmail.com\",\r\n    \"password\": \"12345678@admin\" */\r\n    \"email\": \"fahim@gmail.com\",\r\n    \"password\": \"1234@Fahim\"\r\n    /* \r\n    \"email\": \"ayon@gmail.com\",\r\n    \"password\": \"1234@Ayon\" */\r\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/auth/me",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"auth",
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "373"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"175-fuUqKE38X7mUg4F5UKOPOleB1ug\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Jan 2026 05:35:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Profile info retrieved successfully\",\n    \"data\": {\n        \"_id\": \"695f19e094266a7c7f33c94c\",\n        \"user\": {\n            \"_id\": \"695f19e094266a7c7f33c94a\",\n            \"email\": \"fahim@gmail.com\",\n            \"role\": \"HOST\",\n            \"status\": \"ACTIVE\"\n        },\n        \"fullName\": null,\n        \"location\": \"\",\n        \"profilePhoto\": \"\",\n        \"bio\": \"\",\n        \"interests\": [],\n        \"createdAt\": \"2026-01-08T02:43:44.701Z\",\n        \"updatedAt\": \"2026-01-08T02:43:44.701Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/logout",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Logout",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   /*  \"email\": \"admin@gmail.com\",\r\n    \"password\": \"12345678@admin\" */\r\n    \"email\": \"fahim@gmail.com\",\r\n    \"password\": \"1234@Fahim\"\r\n    /* \r\n    \"email\": \"ayon@gmail.com\",\r\n    \"password\": \"1234@Ayon\" */\r\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/auth/logout",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"auth",
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "accessToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Set-Cookie",
+									"value": "refreshToken=; Path=/; Expires=Thu, 01 Jan 1970 00:00:00 GMT; HttpOnly; Secure; SameSite=None"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "86"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"56-XrRUdx0Ldp/3oL9MGEf2hr15COg\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Jan 2026 05:20:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"User logged out successfully\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Change Password",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"oldPassword\" : \"123@Fahim\",\r\n    \"newPassword\": \"1234@Fahim\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/auth/change-password",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"auth",
+								"change-password"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Change Password",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"oldPassword\" : \"123@Fahim\",\r\n    \"newPassword\": \"1234@Fahim\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/auth/change-password",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"auth",
+										"change-password"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "87"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"57-DhcoonITz3PHSyZjFGffD3uRmBk\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Jan 2026 15:18:38 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Password changed successfully\",\n    \"data\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Profile",
+			"item": [
+				{
+					"name": "Update Profile",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/my-pc/Downloads/80bcf06d9f4a1638c0f68f937b5f2541.jpg"
+								},
+								{
+									"key": "data",
+									"value": "{\n  \"location\": \"Dhaka, Bangladesh\",\n  \"bio\": \"Full-stack developer and community event organizer.\",\n  \"interests\": \"technology,startups,meetups\"\n}\n",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/profile/update-profile",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"profile",
+								"update-profile"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get User Profile",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventId\" : \"6961489363b106e5b41144d0\"\r\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/profile/695f5085cd89e5e7c0921074",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"profile",
+								"695f5085cd89e5e7c0921074"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get User Profile",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"eventId\" : \"6961489363b106e5b41144d0\"\r\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/profile/695f4e0e2f98954db22453a9",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"profile",
+										"695f4e0e2f98954db22453a9"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2778"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ada-ypt96XqHRqqLgJIe+KaVLVFZqjA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Jan 2026 21:21:00 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"User profile retrieved Successfully\",\n    \"data\": {\n        \"profile\": {\n            \"_id\": \"695f4e0e2f98954db22453ab\",\n            \"user\": {\n                \"_id\": \"695f4e0e2f98954db22453a9\",\n                \"fullName\": \"Fahim\",\n                \"email\": \"fahim@gmail.com\",\n                \"role\": \"HOST\",\n                \"status\": \"ACTIVE\",\n                \"id\": \"695f4e0e2f98954db22453a9\"\n            },\n            \"location\": \"Dhaka, Bangladesh\",\n            \"profilePhoto\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1768366399/events-activities/l7x6yxanqta-1768366399250-185845397c5d-behind-eye-adele-t-jpg-webp.webp\",\n            \"bio\": \"Full-stack developer and community event organizer.\",\n            \"interests\": [\n                \"technology\",\n                \"startups\",\n                \"meetups\"\n            ],\n            \"createdAt\": \"2026-01-08T06:26:22.127Z\",\n            \"updatedAt\": \"2026-01-14T05:07:35.559Z\"\n        },\n        \"hostedEvents\": [\n            {\n                \"_id\": \"69672ba56da68a33ab55eff5\",\n                \"name\": \"Veronica Guy\",\n                \"type\": \"Non quis dolorem atq\",\n                \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1768369058/events-activities/gdkmy1acnng-1768369058357-premiumphoto-1728412897304-25193f0bedf1-avif.webp\",\n                \"date\": \"2026-04-15T18:00:00.000Z\",\n                \"location\": \"Ut amet odit maxime\",\n                \"isPaid\": \"PAID\",\n                \"joiningFee\": 53,\n                \"status\": \"COMPLETED\",\n                \"isFeatured\": false,\n                \"slug\": \"veronica-guy\"\n            },\n            {\n                \"_id\": \"69666653c99a5d032a5ca0e2\",\n                \"name\": \"Shana Monroe\",\n                \"type\": \"Cum omnis libero off\",\n                \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1768318546/events-activities/bxb0rh47y3b-1768318544666-photo-1685900498152-e7469e91615f-avif.webp\",\n                \"date\": \"2026-02-18T18:00:00.000Z\",\n                \"location\": \"In iure vel commodi\",\n                \"isPaid\": \"FREE\",\n                \"joiningFee\": 0,\n                \"status\": \"FULL\",\n                \"isFeatured\": false,\n                \"slug\": \"shana-monroe-0\"\n            },\n            {\n                \"_id\": \"6966639bc99a5d032a5ca0bb\",\n                \"name\": \"Street Foorewtyrr5jtykue4w6d\",\n                \"type\": \"Festyerival\",\n                \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1768322163/events-activities/lq7bfwy02sq-1768322160528-photo-1717007873182-7cc5d673cbff-avif.webp\",\n                \"date\": \"2026-01-29T18:00:00.000Z\",\n                \"location\": \"At ipsam quia magni\",\n                \"isPaid\": \"PAID\",\n                \"joiningFee\": 18,\n                \"status\": \"COMPLETED\",\n                \"isFeatured\": false,\n                \"slug\": \"street-foorewtyrr5jtykue4w6d-1\"\n            },\n            {\n                \"_id\": \"6966707911ffb7aea9c25f4c\",\n                \"name\": \"Tech Entrepreneurs Networking\",\n                \"type\": \"Networking\",\n                \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1768321144/events-activities/843v1zt0sq6-1768321141844-photo-1703944719154-9bd342c6a3fe-avif.webp\",\n                \"date\": \"2026-01-29T18:00:00.000Z\",\n                \"location\": \"The Westin, Gulshan 2, Dhaka\",\n                \"isPaid\": \"PAID\",\n                \"joiningFee\": 45,\n                \"status\": \"OPEN\",\n                \"isFeatured\": false,\n                \"slug\": \"tech-entrepreneurs-networking-night\"\n            },\n            {\n                \"_id\": \"69666562c99a5d032a5ca0d7\",\n                \"name\": \"Armando Riddle\",\n                \"type\": \"Voluptatem Facilis\",\n                \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1768318305/events-activities/d4v6qf2u6bs-1768318296769-download-7-jpg.webp\",\n                \"date\": \"2026-01-21T18:00:00.000Z\",\n                \"location\": \"Aute eum fuga Debit\",\n                \"isPaid\": \"PAID\",\n                \"joiningFee\": 59,\n                \"status\": \"OPEN\",\n                \"isFeatured\": false,\n                \"slug\": \"armando-riddle\"\n            }\n        ],\n        \"joinedEvents\": []\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Event",
+			"item": [
+				{
+					"name": "Create Event",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/my-pc/Downloads/teemu-paananen-bzdhc5b3Bxs-unsplash.jpg"
+								},
+								{
+									"key": "data",
+									"value": "{\n  \"name\": \"Leadership and Growth Seminar\",\n  \"slug\": \"leadership-growth-seminar\",\n  \"type\": \"Seminar\",\n  \"description\": \"Learn leadership strategies and growth hacks for your startup.\",\n  \"image\": \"leadership-growth.jpg\",\n  \"date\": \"2026-12-05T17:00:00.000Z\",\n  \"location\": \"Hotel Amari, Dhaka\",\n  \"minParticipants\": 20,\n  \"maxParticipants\": 100,\n  \"isPaid\": \"FREE\",\n  \"joiningFee\": 0,\n  \"status\": \"COMPLETED\",\n  \"isFeatured\": false,\n  \"host\": \"695f4e0e2f98954db22453a9\"\n}\n",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/event/create",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"event",
+								"create"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Event",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/my-pc/Downloads/photo-1685900498152-e7469e91615f.avif"
+										},
+										{
+											"key": "data",
+											"value": "  {\n    \"name\": \"Photography Masterclass\",\n    \"type\": \"Workshop\",\n    \"description\": \"Enhance your photography skills with our hands-on masterclass led by professional photographers. Learn about lighting, composition, and editing techniques in an interactive and supportive environment. Ideal for beginners and enthusiasts looking to take their photography to the next level.\",\n    \"image\": \"photography-masterclass.jpg\",\n    \"date\": \"2026-09-01T14:00:00.000Z\",\n    \"location\": \"Banani Studio, Dhaka, Bangladesh\",\n    \"minParticipants\": 5,\n    \"maxParticipants\": 25,\n    \"isPaid\": \"PAID\",\n    \"joiningFee\": 30,\n    \"status\": \"OPEN\"\n  }",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/event/create",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"event",
+										"create"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "962"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3c2-psKqgYg3p9qJrXmMe32XV71AwAc\""
+								},
+								{
+									"key": "Date",
+									"value": "Thu, 08 Jan 2026 23:53:46 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 201,\n    \"success\": true,\n    \"message\": \"Event created successfully\",\n    \"data\": {\n        \"name\": \"Photography Masterclass\",\n        \"type\": \"Workshop\",\n        \"description\": \"Enhance your photography skills with our hands-on masterclass led by professional photographers. Learn about lighting, composition, and editing techniques in an interactive and supportive environment. Ideal for beginners and enthusiasts looking to take their photography to the next level.\",\n        \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1767916426/events-activities/b8i9j8q3vw-1767916424083-photo-1685900498152-e7469e91615f-avif.webp\",\n        \"date\": \"2026-09-01T14:00:00.000Z\",\n        \"location\": \"Banani Studio, Dhaka, Bangladesh\",\n        \"minParticipants\": 5,\n        \"maxParticipants\": 25,\n        \"isPaid\": \"PAID\",\n        \"joiningFee\": 30,\n        \"status\": \"OPEN\",\n        \"isFeatured\": false,\n        \"host\": \"695f4d9ec4e555d9e07b3ea0\",\n        \"_id\": \"6960438ae0ab4529eb6a7318\",\n        \"createdAt\": \"2026-01-08T23:53:46.738Z\",\n        \"updatedAt\": \"2026-01-08T23:53:46.738Z\",\n        \"slug\": \"photography-masterclass\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Event",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/my-pc/Downloads/photo-1717007873182-7cc5d673cbff.avif"
+								},
+								{
+									"key": "data",
+									"value": "{\n  \"name\": \"Street Foorewtyrr5jtykue4w6d\",\n  \"type\": \"Festyerival\",\n  \"description\": \"Taste the best of Dhaka’s street food culture at our vibrant carnival. From spicy chaats to sweet desserts, enjoy a culinary adventure while exploring food stalls, live music, and cultural performances. Bring your friends and family for a day of fun, flavor, and festivity.\",\n\"status\": \"COMPLETED\"\n}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/event/6966639bc99a5d032a5ca0bb",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"event",
+								"6966639bc99a5d032a5ca0bb"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Event",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "file",
+											"type": "file",
+											"src": "/C:/Users/my-pc/Downloads/premium_photo-1728412897304-25193f0bedf1.avif"
+										},
+										{
+											"key": "data",
+											"value": "{\n  \"name\": \"Street Food\",\n  \"type\": \"Festival\",\n  \"description\": \"Taste the best of Dhaka’s street food culture at our vibrant carnival. From spicy chaats to sweet desserts, enjoy a culinary adventure while exploring food stalls, live music, and cultural performances. Bring your friends and family for a day of fun, flavor, and festivity.\"\n}\n",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/event/696042442f717a3c26d4e2ec",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"event",
+										"696042442f717a3c26d4e2ec"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "939"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3ab-4B5zpjJmJZpsJpzirwVR5TfVplE\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jan 2026 00:12:14 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Event updated successfully\",\n    \"data\": {\n        \"_id\": \"696042442f717a3c26d4e2ec\",\n        \"name\": \"Street Food\",\n        \"type\": \"Festival\",\n        \"description\": \"Taste the best of Dhaka’s street food culture at our vibrant carnival. From spicy chaats to sweet desserts, enjoy a culinary adventure while exploring food stalls, live music, and cultural performances. Bring your friends and family for a day of fun, flavor, and festivity.\",\n        \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1767917532/events-activities/g4x3pw5xtrc-1767917529481-premiumphoto-1728412897304-25193f0bedf1-avif.webp\",\n        \"date\": \"2026-08-12T12:00:00.000Z\",\n        \"location\": \"Dhanmondi Lake Park, Dhaka, Bangladesh\",\n        \"minParticipants\": 30,\n        \"maxParticipants\": 300,\n        \"isPaid\": \"FREE\",\n        \"joiningFee\": 0,\n        \"status\": \"OPEN\",\n        \"isFeatured\": false,\n        \"host\": \"695f4e0e2f98954db22453a9\",\n        \"createdAt\": \"2026-01-08T23:48:20.391Z\",\n        \"updatedAt\": \"2026-01-09T00:12:13.596Z\",\n        \"slug\": \"street-food\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Single Event",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/event/startup-funding-q&a-session",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"event",
+								"startup-funding-q&a-session"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Single Event",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/event/armando-riddle",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"event",
+										"armando-riddle"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1366"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"556-vSOLbQQaMb13tOXXzduOqoiw/c4\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Jan 2026 07:38:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Event retrieved successfully\",\n    \"data\": {\n        \"event\": {\n            \"_id\": \"69666562c99a5d032a5ca0d7\",\n            \"name\": \"Armando Riddle\",\n            \"type\": \"Voluptatem Facilis\",\n            \"description\": \"Eaque iusto eos et \",\n            \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1768318305/events-activities/d4v6qf2u6bs-1768318296769-download-7-jpg.webp\",\n            \"date\": \"2026-01-21T18:00:00.000Z\",\n            \"location\": \"Aute eum fuga Debit\",\n            \"minParticipants\": 21,\n            \"maxParticipants\": 55,\n            \"isPaid\": \"PAID\",\n            \"joiningFee\": 59,\n            \"status\": \"OPEN\",\n            \"isFeatured\": false,\n            \"host\": {\n                \"_id\": \"695f4e0e2f98954db22453a9\",\n                \"fullName\": \"Fahim\",\n                \"profile\": {\n                    \"_id\": \"695f4e0e2f98954db22453ab\",\n                    \"user\": \"695f4e0e2f98954db22453a9\",\n                    \"profilePhoto\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1768366399/events-activities/l7x6yxanqta-1768366399250-185845397c5d-behind-eye-adele-t-jpg-webp.webp\"\n                }\n            },\n            \"createdAt\": \"2026-01-13T15:31:46.494Z\",\n            \"updatedAt\": \"2026-01-13T15:31:46.494Z\",\n            \"slug\": \"armando-riddle\"\n        },\n        \"participants\": [\n            {\n                \"_id\": \"6967471c5d862b2f7e441dfb\",\n                \"user\": {\n                    \"_id\": \"695f5085cd89e5e7c0921074\",\n                    \"fullName\": \"Rafi Hasan\",\n                    \"profile\": {\n                        \"_id\": \"695f5085cd89e5e7c0921076\",\n                        \"user\": \"695f5085cd89e5e7c0921074\",\n                        \"profilePhoto\": \"\"\n                    }\n                }\n            },\n            {\n                \"_id\": \"696747dd5d862b2f7e441e17\",\n                \"user\": {\n                    \"_id\": \"695f4e2d2f98954db22453ae\",\n                    \"fullName\": \"Ayon\",\n                    \"profile\": {\n                        \"_id\": \"695f4e2d2f98954db22453b0\",\n                        \"user\": \"695f4e2d2f98954db22453ae\",\n                        \"profilePhoto\": \"\"\n                    }\n                }\n            }\n        ],\n        \"participantsCount\": 2\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete Event",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n   /*  \"email\": \"admin@gmail.com\",\r\n    \"password\": \"12345678@admin\" */\r\n    \"email\": \"fahim@gmail.com\",\r\n    \"password\": \"1234@Fahim\"\r\n    /* \"email\": \"ayon@gmail.com\",\r\n    \"password\": \"1234@Ayon\" */\r\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/event/69604b60c72cc0da3a5925d1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"event",
+								"69604b60c72cc0da3a5925d1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Delete Event",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   /*  \"email\": \"admin@gmail.com\",\r\n    \"password\": \"12345678@admin\" */\r\n    \"email\": \"fahim@gmail.com\",\r\n    \"password\": \"1234@Fahim\"\r\n    /* \"email\": \"ayon@gmail.com\",\r\n    \"password\": \"1234@Ayon\" */\r\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/event/69604b60c72cc0da3a5925d1",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"event",
+										"69604b60c72cc0da3a5925d1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "84"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"54-i2k9HsH+YWT4kNbzKnbuwaUCsLA\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jan 2026 00:27:28 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Event deleted successfully\",\n    \"data\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Get All Events",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/event/all-events",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"event",
+								"all-events"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "10",
+									"disabled": true
+								},
+								{
+									"key": "searchTerm",
+									"value": "grap",
+									"disabled": true
+								},
+								{
+									"key": "isPaid",
+									"value": "PAID",
+									"disabled": true
+								},
+								{
+									"key": "fields",
+									"value": "name,description,image",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get All Events",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/event/all-events",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"event",
+										"all-events"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "10",
+											"disabled": true
+										},
+										{
+											"key": "searchTerm",
+											"value": "grap",
+											"disabled": true
+										},
+										{
+											"key": "isPaid",
+											"value": "PAID",
+											"disabled": true
+										},
+										{
+											"key": "fields",
+											"value": "name,description,image",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "3584"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"e00-7jn1zDxHIcZ6HqY1NAKi7PnrOJ8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jan 2026 16:37:37 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"All events retrieved successfully\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 4,\n        \"totalPage\": 1\n    },\n    \"data\": [\n        {\n            \"_id\": \"69604b15c72cc0da3a5925be\",\n            \"name\": \"Photography Masterclass\",\n            \"type\": \"Workshop\",\n            \"description\": \"Enhance your photography skills with our hands-on masterclass led by professional photographers. Learn about lighting, composition, and editing techniques in an interactive and supportive environment. Ideal for beginners and enthusiasts looking to take their photography to the next level.\",\n            \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1767918356/events-activities/erbbs4j09yt-1767918354355-photo-1685900498152-e7469e91615f-avif.webp\",\n            \"date\": \"2026-09-01T14:00:00.000Z\",\n            \"location\": \"Banani Studio, Dhaka, Bangladesh\",\n            \"minParticipants\": 5,\n            \"maxParticipants\": 25,\n            \"isPaid\": \"PAID\",\n            \"joiningFee\": 30,\n            \"status\": \"OPEN\",\n            \"isFeatured\": false,\n            \"host\": \"695f4d9ec4e555d9e07b3ea0\",\n            \"createdAt\": \"2026-01-09T00:25:57.312Z\",\n            \"updatedAt\": \"2026-01-09T00:25:57.312Z\",\n            \"slug\": \"photography-masterclass\"\n        },\n        {\n            \"_id\": \"696040e12f717a3c26d4e2d7\",\n            \"name\": \"Street Food Carnival\",\n            \"type\": \"Festival\",\n            \"description\": \"Taste the best of Dhaka’s street food culture at our vibrant carnival. From spicy chaats to sweet desserts, enjoy a culinary adventure while exploring food stalls, live music, and cultural performances. Bring your friends and family for a day of fun, flavor, and festivity.\",\n            \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1767915744/events-activities/76yb2wq1o2a-1767915741950-photo-1685900498152-e7469e91615f-avif.webp\",\n            \"date\": \"2026-08-12T12:00:00.000Z\",\n            \"location\": \"Dhanmondi Lake Park, Dhaka, Bangladesh\",\n            \"minParticipants\": 30,\n            \"maxParticipants\": 300,\n            \"isPaid\": \"FREE\",\n            \"joiningFee\": 0,\n            \"status\": \"OPEN\",\n            \"isFeatured\": false,\n            \"host\": \"695f4d9ec4e555d9e07b3ea0\",\n            \"createdAt\": \"2026-01-08T23:42:25.262Z\",\n            \"updatedAt\": \"2026-01-08T23:42:25.262Z\",\n            \"slug\": \"street-food-carnival\"\n        },\n        {\n            \"_id\": \"696035cf5f05d6ece73d941f\",\n            \"name\": \"Tech Innovators Meetup\",\n            \"type\": \"Meetup\",\n            \"description\": \"A gathering for tech enthusiasts, startup founders, and innovators to share ideas, network, and discuss the latest trends in AI, web3, and app development. Enjoy keynote sessions, panel discussions, and hands-on workshops designed to inspire creativity and collaboration.\",\n            \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1767912910/events-activities/hbbuod773ab-1767912907246-travel-login-jpg.webp\",\n            \"date\": \"2026-07-05T10:00:00.000Z\",\n            \"location\": \"Panthapath Tech Hub, Dhaka, Bangladesh\",\n            \"minParticipants\": 20,\n            \"maxParticipants\": 150,\n            \"isPaid\": \"PAID\",\n            \"joiningFee\": 20,\n            \"status\": \"OPEN\",\n            \"isFeatured\": false,\n            \"host\": \"695f4e0e2f98954db22453a9\",\n            \"createdAt\": \"2026-01-08T22:55:11.762Z\",\n            \"updatedAt\": \"2026-01-08T22:55:11.762Z\",\n            \"slug\": \"tech-innovators-meetup\"\n        },\n        {\n            \"_id\": \"696035b75f05d6ece73d941a\",\n            \"name\": \"Community Yoga Morning\",\n            \"type\": \"Wellness\",\n            \"description\": \"Start your weekend with peace and mindfulness at our free community yoga session in the lush gardens of Gulshan. Suitable for all levels, guided by certified instructors. Bring your mat and connect with like-minded individuals in a serene and supportive environment.\",\n            \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1767912886/events-activities/wgakx3yc86n-1767912883374-travel-register-jpg.webp\",\n            \"date\": \"2026-06-20T07:00:00.000Z\",\n            \"location\": \"Gulshan Park, Dhaka, Bangladesh\",\n            \"minParticipants\": 5,\n            \"maxParticipants\": 50,\n            \"isPaid\": \"FREE\",\n            \"joiningFee\": 0,\n            \"status\": \"OPEN\",\n            \"isFeatured\": false,\n            \"host\": \"695f4e0e2f98954db22453a9\",\n            \"createdAt\": \"2026-01-08T22:54:47.525Z\",\n            \"updatedAt\": \"2026-01-08T22:54:47.525Z\",\n            \"slug\": \"community-yoga-morning\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get My Events",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/event/my-events",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"event",
+								"my-events"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "OPEN",
+									"disabled": true
+								},
+								{
+									"key": "isPaid",
+									"value": "PAID",
+									"disabled": true
+								},
+								{
+									"key": "page",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "limit",
+									"value": "1",
+									"disabled": true
+								},
+								{
+									"key": "searchTerm",
+									"value": "AI",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get My Events",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"eventId\" : \"69604b15c72cc0da3a5925be\"\r\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/event/my-events",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"event",
+										"my-events"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "OPEN",
+											"disabled": true
+										},
+										{
+											"key": "isPaid",
+											"value": "PAID",
+											"disabled": true
+										},
+										{
+											"key": "page",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "limit",
+											"value": "1",
+											"disabled": true
+										},
+										{
+											"key": "searchTerm",
+											"value": "AI",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "1828"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"724-g5rJV1Xmf2uryCViFrKrXsQ2ORI\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jan 2026 16:43:09 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"My events retrieved successfully\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 2,\n        \"totalPage\": 1\n    },\n    \"data\": [\n        {\n            \"_id\": \"696035cf5f05d6ece73d941f\",\n            \"name\": \"Tech Innovators Meetup\",\n            \"type\": \"Meetup\",\n            \"description\": \"A gathering for tech enthusiasts, startup founders, and innovators to share ideas, network, and discuss the latest trends in AI, web3, and app development. Enjoy keynote sessions, panel discussions, and hands-on workshops designed to inspire creativity and collaboration.\",\n            \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1767912910/events-activities/hbbuod773ab-1767912907246-travel-login-jpg.webp\",\n            \"date\": \"2026-07-05T10:00:00.000Z\",\n            \"location\": \"Panthapath Tech Hub, Dhaka, Bangladesh\",\n            \"minParticipants\": 20,\n            \"maxParticipants\": 150,\n            \"isPaid\": \"PAID\",\n            \"joiningFee\": 20,\n            \"status\": \"OPEN\",\n            \"isFeatured\": false,\n            \"host\": \"695f4e0e2f98954db22453a9\",\n            \"createdAt\": \"2026-01-08T22:55:11.762Z\",\n            \"updatedAt\": \"2026-01-08T22:55:11.762Z\",\n            \"slug\": \"tech-innovators-meetup\"\n        },\n        {\n            \"_id\": \"696035b75f05d6ece73d941a\",\n            \"name\": \"Community Yoga Morning\",\n            \"type\": \"Wellness\",\n            \"description\": \"Start your weekend with peace and mindfulness at our free community yoga session in the lush gardens of Gulshan. Suitable for all levels, guided by certified instructors. Bring your mat and connect with like-minded individuals in a serene and supportive environment.\",\n            \"image\": \"https://res.cloudinary.com/dfydvf1wx/image/upload/v1767912886/events-activities/wgakx3yc86n-1767912883374-travel-register-jpg.webp\",\n            \"date\": \"2026-06-20T07:00:00.000Z\",\n            \"location\": \"Gulshan Park, Dhaka, Bangladesh\",\n            \"minParticipants\": 5,\n            \"maxParticipants\": 50,\n            \"isPaid\": \"FREE\",\n            \"joiningFee\": 0,\n            \"status\": \"OPEN\",\n            \"isFeatured\": false,\n            \"host\": \"695f4e0e2f98954db22453a9\",\n            \"createdAt\": \"2026-01-08T22:54:47.525Z\",\n            \"updatedAt\": \"2026-01-08T22:54:47.525Z\",\n            \"slug\": \"community-yoga-morning\"\n        }\n    ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Ticket",
+			"item": [
+				{
+					"name": "Create Ticket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventId\" : \"69666562c99a5d032a5ca0d7\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/ticket/create-ticket",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"ticket",
+								"create-ticket"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Create Ticket",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"eventId\" : \"69666562c99a5d032a5ca0d7\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/ticket/create-ticket",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"ticket",
+										"create-ticket"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "930"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3a2-lyv4sjPzGOtMzvqWea6lc5kBOII\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Jan 2026 16:58:27 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Created ticket successfully\",\n    \"data\": {\n        \"paymentUrl\": \"https://sandbox.sslcommerz.com/gwprocess/v3/gw.php?Q=PAY&SESSIONKEY=8E4AE994E5C027CCA069E48A8720AC6B\",\n        \"ticket\": {\n            \"_id\": \"6967cb330d892c3b7ba7a581\",\n            \"user\": {\n                \"_id\": \"695f508ecd89e5e7c092107e\",\n                \"email\": \"siam@gmail.com\",\n                \"role\": \"USER\",\n                \"id\": \"695f508ecd89e5e7c092107e\"\n            },\n            \"event\": {\n                \"_id\": \"69666562c99a5d032a5ca0d7\",\n                \"name\": \"Armando Riddle\",\n                \"type\": \"Voluptatem Facilis\",\n                \"description\": \"Eaque iusto eos et \",\n                \"isPaid\": \"PAID\",\n                \"joiningFee\": 59,\n                \"status\": \"OPEN\"\n            },\n            \"status\": \"PENDING\",\n            \"payment\": {\n                \"_id\": \"6967cb330d892c3b7ba7a583\",\n                \"ticket\": \"6967cb330d892c3b7ba7a581\",\n                \"user\": \"695f508ecd89e5e7c092107e\",\n                \"event\": \"69666562c99a5d032a5ca0d7\",\n                \"transactionId\": \"tran_1768409907087_298\",\n                \"amount\": 59,\n                \"status\": \"UNPAID\",\n                \"createdAt\": \"2026-01-14T16:58:27.149Z\",\n                \"updatedAt\": \"2026-01-14T16:58:27.149Z\"\n            },\n            \"createdAt\": \"2026-01-14T16:58:27.092Z\",\n            \"updatedAt\": \"2026-01-14T16:58:27.205Z\"\n        }\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Ticket",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/ticket/leave-event/69610eabfa159d0874e1f59f",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"ticket",
+								"leave-event",
+								"69610eabfa159d0874e1f59f"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Update Ticket",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/ticket/leave-event/6961278e68296479432772b5",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"ticket",
+										"leave-event",
+										"6961278e68296479432772b5"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "304"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"130-iN++4io5zx5eOS9kA1m3KmBAue8\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jan 2026 16:07:10 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Ticket status updated successfully\",\n    \"data\": {\n        \"_id\": \"6961278e68296479432772b5\",\n        \"user\": \"695f4e2d2f98954db22453ae\",\n        \"event\": \"696035b75f05d6ece73d941a\",\n        \"status\": \"CANCELED\",\n        \"payment\": null,\n        \"createdAt\": \"2026-01-09T16:06:38.342Z\",\n        \"updatedAt\": \"2026-01-09T16:07:10.030Z\"\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "Get My Tickets",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"eventId\" : \"69604b15c72cc0da3a5925be\"\r\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/ticket/my-tickets",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"ticket",
+								"my-tickets"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "CANCELED",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": null,
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get My Tickets",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"eventId\" : \"69604b15c72cc0da3a5925be\"\r\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/ticket/my-tickets",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"ticket",
+										"my-tickets"
+									],
+									"query": [
+										{
+											"key": "status",
+											"value": "CANCELED",
+											"disabled": true
+										},
+										{
+											"key": "",
+											"value": null,
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "2636"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"a4c-qafCaLox0F0CiDCjeGt5I14FsPs\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jan 2026 16:33:24 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"My tickets retrieved successfully\",\n    \"meta\": {\n        \"page\": 1,\n        \"limit\": 10,\n        \"total\": 3,\n        \"totalPage\": 1\n    },\n    \"data\": [\n        {\n            \"_id\": \"6961278e68296479432772b5\",\n            \"user\": \"695f4e2d2f98954db22453ae\",\n            \"event\": {\n                \"_id\": \"696035b75f05d6ece73d941a\",\n                \"name\": \"Community Yoga Morning\",\n                \"type\": \"Wellness\",\n                \"description\": \"Start your weekend with peace and mindfulness at our free community yoga session in the lush gardens of Gulshan. Suitable for all levels, guided by certified instructors. Bring your mat and connect with like-minded individuals in a serene and supportive environment.\",\n                \"date\": \"2026-06-20T07:00:00.000Z\",\n                \"location\": \"Gulshan Park, Dhaka, Bangladesh\",\n                \"isPaid\": \"FREE\",\n                \"joiningFee\": 0,\n                \"status\": \"OPEN\",\n                \"host\": {\n                    \"_id\": \"695f4e0e2f98954db22453a9\",\n                    \"fullName\": \"Fahim\",\n                    \"email\": \"fahim@gmail.com\",\n                    \"id\": \"695f4e0e2f98954db22453a9\"\n                }\n            },\n            \"status\": \"CANCELED\",\n            \"payment\": null,\n            \"createdAt\": \"2026-01-09T16:06:38.342Z\",\n            \"updatedAt\": \"2026-01-09T16:07:10.030Z\"\n        },\n        {\n            \"_id\": \"69610eabfa159d0874e1f59f\",\n            \"user\": \"695f4e2d2f98954db22453ae\",\n            \"event\": {\n                \"_id\": \"69604b15c72cc0da3a5925be\",\n                \"name\": \"Photography Masterclass\",\n                \"type\": \"Workshop\",\n                \"description\": \"Enhance your photography skills with our hands-on masterclass led by professional photographers. Learn about lighting, composition, and editing techniques in an interactive and supportive environment. Ideal for beginners and enthusiasts looking to take their photography to the next level.\",\n                \"date\": \"2026-09-01T14:00:00.000Z\",\n                \"location\": \"Banani Studio, Dhaka, Bangladesh\",\n                \"isPaid\": \"PAID\",\n                \"joiningFee\": 30,\n                \"status\": \"OPEN\",\n                \"host\": {\n                    \"_id\": \"695f4d9ec4e555d9e07b3ea0\",\n                    \"fullName\": \"Super Admin\",\n                    \"email\": \"admin@gmail.com\",\n                    \"id\": \"695f4d9ec4e555d9e07b3ea0\"\n                }\n            },\n            \"status\": \"CANCELED\",\n            \"payment\": \"69610eabfa159d0874e1f5a1\",\n            \"createdAt\": \"2026-01-09T14:20:27.086Z\",\n            \"updatedAt\": \"2026-01-09T16:09:01.888Z\"\n        },\n        {\n            \"_id\": \"69610dd3e085315352c2885e\",\n            \"user\": \"695f4e2d2f98954db22453ae\",\n            \"event\": {\n                \"_id\": \"696035cf5f05d6ece73d941f\",\n                \"name\": \"Tech Innovators Meetup\",\n                \"type\": \"Meetup\",\n                \"description\": \"A gathering for tech enthusiasts, startup founders, and innovators to share ideas, network, and discuss the latest trends in AI, web3, and app development. Enjoy keynote sessions, panel discussions, and hands-on workshops designed to inspire creativity and collaboration.\",\n                \"date\": \"2026-07-05T10:00:00.000Z\",\n                \"location\": \"Panthapath Tech Hub, Dhaka, Bangladesh\",\n                \"isPaid\": \"PAID\",\n                \"joiningFee\": 20,\n                \"status\": \"OPEN\",\n                \"host\": {\n                    \"_id\": \"695f4e0e2f98954db22453a9\",\n                    \"fullName\": \"Fahim\",\n                    \"email\": \"fahim@gmail.com\",\n                    \"id\": \"695f4e0e2f98954db22453a9\"\n                }\n            },\n            \"status\": \"PENDING\",\n            \"payment\": \"69610dd3e085315352c28860\",\n            \"createdAt\": \"2026-01-09T14:16:51.320Z\",\n            \"updatedAt\": \"2026-01-09T14:16:51.411Z\"\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get Ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{BASE_URL}}/ticket/tran_1768412322527_34",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"ticket",
+								"tran_1768412322527_34"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Get Ticket",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{BASE_URL}}/ticket/tran_1768412322527_34",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"ticket",
+										"tran_1768412322527_34"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": null,
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "http://localhost:3000"
+								},
+								{
+									"key": "Vary",
+									"value": "Origin"
+								},
+								{
+									"key": "Access-Control-Allow-Credentials",
+									"value": "true"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "726"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"2d6-+N1E1olWv3kL6YIBd+HBlnDqyUs\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 14 Jan 2026 20:47:49 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Ticket info retrieved successfully\",\n    \"data\": {\n        \"_id\": \"6967d4a21af3f9215d9033ab\",\n        \"ticket\": \"6967d4a21af3f9215d9033a9\",\n        \"user\": \"695f5085cd89e5e7c0921074\",\n        \"event\": {\n            \"_id\": \"6966dcdb75f3aedd8c203340\",\n            \"name\": \"AI in Healthcare Seminar\",\n            \"type\": \"Seminar\",\n            \"description\": \"Explore how AI is transforming healthcare in Bangladesh and beyond.\",\n            \"date\": \"2026-12-05T12:00:00.000Z\",\n            \"location\": \"Pan Pacific Sonargaon, Dhaka\",\n            \"isPaid\": \"PAID\",\n            \"joiningFee\": 50,\n            \"status\": \"OPEN\",\n            \"host\": {\n                \"_id\": \"695f4d9ec4e555d9e07b3ea0\",\n                \"fullName\": \"Super Admin\",\n                \"email\": \"admin@gmail.com\",\n                \"id\": \"695f4d9ec4e555d9e07b3ea0\"\n            }\n        },\n        \"transactionId\": \"tran_1768412322527_34\",\n        \"amount\": 50,\n        \"status\": \"PAID\",\n        \"createdAt\": \"2026-01-14T17:38:42.571Z\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Payment",
+			"item": [
+				{
+					"name": "Payment for a ticket",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/payment/init-payment/696165ed62fcbf6932f753c3",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"payment",
+								"init-payment",
+								"696165ed62fcbf6932f753c3"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Payment for a ticket",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/payment/init-payment/6961623bcd8d977c56c2eed7",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"payment",
+										"init-payment",
+										"6961623bcd8d977c56c2eed7"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": "",
+									"type": "text"
+								},
+								{
+									"key": "Content-Length",
+									"value": "196"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c4-4Hn1DZwtg60Eo/O7s2dHPS5uh4Q\""
+								},
+								{
+									"key": "Date",
+									"value": "Fri, 09 Jan 2026 20:30:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [
+								{
+									"expires": "Invalid Date",
+									"domain": "",
+									"path": ""
+								}
+							],
+							"body": "{\n    \"statusCode\": 200,\n    \"success\": true,\n    \"message\": \"Payment done successfully\",\n    \"data\": {\n        \"paymentUrl\": \"https://sandbox.sslcommerz.com/gwprocess/v3/gw.php?Q=PAY&SESSIONKEY=2849477ECA95C4E681262793294ABF70\"\n    }\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Not Found",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}/test",
+					"host": [
+						"{{URL}}"
+					],
+					"path": [
+						"test"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Not Found",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}/test",
+							"host": [
+								"{{URL}}"
+							],
+							"path": [
+								"test"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "115"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"73-TgaY1UXZUxlaTOvbEdk02rDbn3g\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 07 Jan 2026 04:48:44 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"success\": false,\n    \"message\": \"API NOT FOUND!\",\n    \"error\": {\n        \"path\": \"/test\",\n        \"message\": \"Your requested path is not found!\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Root Route",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{URL}}",
+					"host": [
+						"{{URL}}"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Root Route",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URL}}",
+							"host": [
+								"{{URL}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json",
+							"description": "",
+							"type": "text"
+						},
+						{
+							"key": "Content-Length",
+							"value": "137"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"89-O2DPKQYwJgTWw+DSGt448N2wTXI\""
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 07 Jan 2026 04:48:24 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=5"
+						}
+					],
+					"cookie": [
+						{
+							"expires": "Invalid Date",
+							"domain": "",
+							"path": ""
+						}
+					],
+					"body": "{\n    \"message\": \"Welcome to events activities server\",\n    \"environment\": \"development\",\n    \"uptime\": \"63.78 sec\",\n    \"timeStamp\": \"2026-01-07T04:48:24.670Z\"\n}"
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "URL",
+			"value": ""
+		},
+		{
+			"key": "BASE_URL",
+			"value": ""
+		}
+	]
+}
