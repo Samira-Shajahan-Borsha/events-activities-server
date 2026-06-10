@@ -51,11 +51,11 @@ Key capabilities:
 
 ### SSLCommerz Sandbox Payment Credentials
 
-| Field      | Value          |
-| ---------- | -------------- |
-| Card Number| 4111111111111111 |
-| Expiry     | 12/26          |
-| CVV        | 111            |
+| Field       | Value            |
+| ----------- | ---------------- |
+| Card Number | 4111111111111111 |
+| Expiry      | 12/26            |
+| CVV         | 111              |
 
 > **Note:** These are SSLCommerz sandbox test credentials for development and testing purposes only. Never use production credentials in the `.env` file.
 
@@ -83,7 +83,6 @@ Security best practices implemented:
 ---
 
 ## 🧠 Core Business Logic
-
 
 ### 1️⃣ User & Profile Management
 
@@ -202,51 +201,51 @@ Payment flow highlights:
 
 ## 🛠️ Technology Stack
 
-### Core & Runtime
+### 🧠 Core & Runtime
 
-- **Node.js:** JavaScript runtime
-- **Express.js:** HTTP server and REST API routing
-- **TypeScript:** Static type checking and compilation
+- 🚀 **Node.js:** JavaScript runtime
+- 🌐 **Express.js:** HTTP server and REST API routing
+- 🧪 **TypeScript:** Static type checking and compilation
 
-### Database & ORM
+### 🗄️ Database & ORM
 
-- **MongoDB:** NoSQL document database
-- **Mongoose:** ODM for modeling application data
+- 📦 **MongoDB:** NoSQL document database
+- 🧾 **Mongoose:** ODM for modeling application data
 
-### Authentication & Security
+### 🔐 Authentication & Security
 
-- **jsonwebtoken:** JWT access and refresh token handling
-- **bcryptjs:** Password hashing and verification
-- **cookie-parser:** HTTP cookie parsing for token storage
+- 🔑 **jsonwebtoken:** JWT access and refresh token handling
+- 🛡️ **bcryptjs:** Password hashing and verification
+- 🍪 **cookie-parser:** HTTP cookie parsing for token storage
 
-### Validation & Serialization
+### ✅ Validation & Serialization
 
-- **Zod:** Request and payload schema validation
+- 🧩 **Zod:** Request and payload schema validation
 
-### File Handling & Cloud Storage
+### ☁️ File Handling & Cloud Storage
 
-- **Multer:** Multipart file upload middleware
-- **multer-storage-cloudinary:** Cloudinary storage adapter for Multer
-- **Cloudinary:** Image storage and optimization
+- 📤 **Multer:** Multipart form-data upload middleware
+- ☁️ **multer-storage-cloudinary:** Cloudinary storage adapter for Multer
+- 🌥️ **Cloudinary:** Image storage and optimization
 
-### Payments & Gateway Integration
+### 💳 Payments & Gateway Integration
 
-- **SSLCommerz:** Payment gateway integration
-- **Axios:** HTTP client for external API calls
+- 💰 **SSLCommerz:** Payment gateway integration
+- 🔗 **Axios:** HTTP client for external API calls
 
-### HTTP & Network
+### 🌐 HTTP & Network
 
-- **CORS:** Cross-Origin Resource Sharing middleware
-- **dotenv:** Environment variable management
-- **http-status-codes:** HTTP status helpers
+- 🌍 **CORS:** Cross-Origin Resource Sharing middleware
+- ⚙️ **dotenv:** Environment variable management
+- 🧾 **http-status-codes:** HTTP status helpers
 
-### Development Tools
+### 🛠️ Development Tools
 
-- **ts-node-dev:** TypeScript watch-mode development server
-- **ESLint:** Code linting and quality checks
-- **TypeScript:** Compile-time type safety
+- 🔁 **ts-node-dev:** TypeScript watch-mode development server
+- 🧹 **ESLint:** Code linting and quality checks
+- 🧠 **TypeScript:** Compile-time type safety
 
-### Type Definitions (Dev Dependencies)
+### 📦 Type Definitions (Dev Dependencies)
 
 - **@types/cookie-parser**
 - **@types/cors**
@@ -257,7 +256,7 @@ Payment flow highlights:
 
 ---
 
-## � Getting Started
+## 🚀 Getting Started
 
 ### Prerequisites
 
@@ -277,8 +276,8 @@ cd events-activities-server
 ### Environment Setup
 
 1. **Create environment files:**
-   - Copy `.env.dev` to `.env` for development
-   - Create `.env.prod` for production settings
+    - Copy `.env.dev` to `.env` for development
+    - Create `.env.prod` for production settings
 
 2. **Configure `.env` variables:**
 
@@ -378,7 +377,6 @@ npm run lint
 ---
 
 ## 📂 Project Structure
-
 
 ```text
 event-activities-server/
