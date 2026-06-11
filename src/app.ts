@@ -24,7 +24,7 @@ app.use("/api/v1", router);
 
 app.get("/", (req: Request, res: Response) => {
     res.status(httpStatusCode.OK).json({
-        message: "Welcome to events activities server",
+        message: "Welcome to eventHub server",
         environment: envVars.NODE_ENV,
         uptime: process.uptime().toFixed(2) + " sec",
         timeStamp: new Date().toISOString(),
